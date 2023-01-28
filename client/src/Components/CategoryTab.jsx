@@ -10,15 +10,15 @@ import {
   HStack,
   Flex,
 } from "@chakra-ui/react";
-import i1 from "../assets/Todays_Deal_1.png";
-import i2 from "../assets/Chicken_20.png";
-import i3 from "../assets/Fish.png";
-import i4 from "../assets/Mutton_20.png";
-import i5 from "../assets/RTC.png";
-import i6 from "../assets/Prawn.png";
-import i7 from "../assets/Coldcuts.png";
-import i8 from "../assets/Spread_Bottle1.png";
-import i9 from "../assets/Eggs.png";
+import i1 from "../Assets/Todays_Deal_1.png";
+import i2 from "../Assets/Chicken_20.png";
+import i3 from "../Assets/Fish.png";
+import i4 from "../Assets/Mutton_20.png";
+import i5 from "../Assets/RTC.png";
+import i6 from "../Assets/Prawn.png";
+import i7 from "../Assets/Coldcuts.png";
+import i8 from "../Assets/Spread_Bottle1.png";
+import i9 from "../Assets/Eggs.png";
 
 export const CategoryTab = () => {
   return (
