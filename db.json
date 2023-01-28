@@ -1,0 +1,15 @@
+[
+    {
+        "name": "Chicken Drumstick - Pack Of 6",
+        "image": "https://dao54xqhg9jfa.cloudfront.net/OMS-ProductMerchantdising/d66528ff-5fde-ff8e-32fb-a0c9226c81cf/original/Chicken-Drumstick--No-of-Piece-Shot.jpg?format=webp",
+        "price": 269,
+        "orgprice" : 299,
+        "discount": 15,
+        "desc": "String",
+        "pieces": 6,
+        "weight": 500,
+        "delivery": "9 PM - 11 PM",
+        "category": "Chicken",
+        "subcat": "speciality-cuts"
+    }
+]
