@@ -83,20 +83,20 @@ const Home = () => {
             </Box>
           </Box>
           <Box className='discovernow'>
-            <Box m="20px auto">
+            <Box m="20px auto" textAlign="center">
               <Box w={["57%", "35%", "25%"]} m="auto" bg="#f0eded" position="absolute" mt={["-2%", "-1.5%", "-1%"]} left={["22%", "32%", "38%"]} fontWeight="bold" fontSize={["15px", "16px", "19px"]}><Text color="#D11243">Know The Licious Way</Text></Box>
-              <Box w="95%" m="auto" border="1px solid black" rounded="10px" p="30px" display="grid" fontSize={["15px", "17px", "20px"]}
+              <Box w="95%" m="auto" border="1px solid #cdcbcb" rounded="10px" p="30px" display="grid" fontSize={["14px", "15px", "17px"]}
               gridTemplateColumns={["repeat(1, 1fr)", "repeat(3, 1fr)", "repeat(5, 1fr)"]}>
-                <Box borderRight={["none", "1px solid grey", "1px solid grey"]} borderBottom={["1px solid grey", "1px solid grey", "none"]}>
+                <Box borderRight={["none", "1px solid #cdcbcb", "1px solid #cdcbcb"]} borderBottom={["1px solid #cdcbcb", "1px solid #cdcbcb", "none"]}>
                   <Text>Premium Produce</Text>
                 </Box>
-                <Box borderRight={["none", "1px solid grey", "1px solid grey"]} borderBottom={["1px solid grey", "1px solid grey", "none"]}>
+                <Box borderRight={["none", "1px solid #cdcbcb", "1px solid #cdcbcb"]} borderBottom={["1px solid #cdcbcb", "1px solid #cdcbcb", "none"]}>
                   <Text>Extraordinary Cooking</Text>
                 </Box>
-                <Box borderRight={["none", "none", "1px solid grey"]} borderBottom={["1px solid grey", "1px solid grey", "none"]}>
+                <Box borderRight={["none", "none", "1px solid #cdcbcb"]} borderBottom={["1px solid #cdcbcb", "1px solid #cdcbcb", "none"]}>
                   <Text>150 Quality Checks</Text>
                 </Box>
-                <Box borderRight={["none", "1px solid grey", "1px solid grey"]} borderBottom={["1px solid grey", "none", "none"]}>
+                <Box borderRight={["none", "1px solid #cdcbcb", "1px solid #cdcbcb"]} borderBottom={["1px solid #cdcbcb", "none", "none"]}>
                   <Text>Delivered Fresh Everyday</Text>
                 </Box>
                 <Box><Text>World-Class Central Production Unit</Text></Box>

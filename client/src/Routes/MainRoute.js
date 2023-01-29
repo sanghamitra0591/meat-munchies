@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from "react-router-dom";
 import Home from '../Pages/Home';
 import Chicken from '../Pages/Chicken';
+import SinglePage from '../Pages/SinglePage';
 
 const MainRoute = () => {
   return (
@@ -9,6 +10,7 @@ const MainRoute = () => {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/chicken" element={<Chicken />}></Route>
+        <Route path="/id" element={<SinglePage />}></Route>
       </Routes>
     </div>
   )
