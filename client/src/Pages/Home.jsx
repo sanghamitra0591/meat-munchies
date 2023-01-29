@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Image, Link, Text } from '@chakra-ui/react'
 import banner from "../Assets/HomePage/licious-banner.jpeg";
 import banner2 from "../Assets/HomePage/banner2.jpeg";
 import logo from "../Assets/HomePage/meatmunchies-logo.png";
@@ -23,18 +23,18 @@ import blog3 from "../Assets/HomePage/blog3.PNG";
 const Home = () => {
 
   const categories= [
-    { id:1,      img: deals,        name: "Today's Deals" }, 
-    { id:2,      img: chicken,      name: "Chicken" }, 
-    { id:3,      img: fish,         name: "Fish & Seafood" },
-    { id:4,      img: mutton,       name: "Mutton" },
-    { id:5,      img: readytocook,  name: "Ready to Cook" },
-    { id:6,      img: prawn,        name: "Prawns" },
-    { id:7,      img: coldcut,      name: "Cold Cuts" },
-    { id:8,      img: spread,       name: "Spreads" }, 
-    { id:9,      img: egg,          name: "Eggs" }, 
-    { id:10,     img: biriyani,     name: "Biriyani & Kebab" },
-    { id:11,     img: combo,        name: "Combos" },
-    { id:12,     img: gourmet,      name: "Gourmet" },
+    { id:1,      img: deals,        name: "Today's Deals", link: "/" }, 
+    { id:2,      img: chicken,      name: "Chicken", link: "/chicken" }, 
+    { id:3,      img: fish,         name: "Fish & Seafood", link: "/" },
+    { id:4,      img: mutton,       name: "Mutton", link: "/" },
+    { id:5,      img: readytocook,  name: "Ready to Cook", link: "/" },
+    { id:6,      img: prawn,        name: "Prawns", link: "/" },
+    { id:7,      img: coldcut,      name: "Cold Cuts", link: "/" },
+    { id:8,      img: spread,       name: "Spreads", link: "/" }, 
+    { id:9,      img: egg,          name: "Eggs", link: "/" }, 
+    { id:10,     img: biriyani,     name: "Biriyani & Kebab", link: "/" },
+    { id:11,     img: combo,        name: "Combos", link: "/" },
+    { id:12,     img: gourmet,      name: "Gourmet", link: "/" },
   ]
 
   const blogs= [
@@ -60,11 +60,11 @@ const Home = () => {
               <Box display="grid" gridTemplateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)"]}>
                 {categories && categories.map((el)=>{
                   return <Box key={el.id} textAlign="center" color="#404040">
-                    <Box boxSize={"80%"} m="auto" overflow="hidden">
-                      <Image _hover={{transform: "scale(1.15)", transition: "transform 1s"}} boxSize={"100%"} src={el.img} alt={el.name} />
+                      <Box boxSize="80%" m="auto" overflow="hidden">
+                      <Image _hover={{transform: "scale(1.15)", transition: "transform 1s"}} boxSize="100%" src={el.img} alt={el.name} />
+                      </Box>
+                      <Link href={el.link}><Text fontWeight={"700"} fontSize={["14px", "16px", "18px"]} m="5px 0px">{el.name}</Text></Link>
                     </Box>
-                    <Text fontWeight={"700"} fontSize={["14px", "16px", "18px"]} m="5px 0px">{el.name}</Text>
-                  </Box>
                 })}
               </Box>
             </Box>
@@ -117,11 +117,11 @@ const Home = () => {
               <Box display="grid" gridTemplateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)"]}>
                 {categories && categories.map((el)=>{
                   return <Box key={el.id} textAlign="center" color="#404040">
-                    <Box boxSize={"80%"} m="auto" overflow="hidden">
-                      <Image _hover={{transform: "scale(1.15)", transition: "transform 1s"}} boxSize={"100%"} src={el.img} alt={el.name} />
-                    </Box>
-                    <Text fontWeight={"700"} fontSize={["14px", "16px", "18px"]} m="5px 0px">{el.name}</Text>
-                  </Box>
+                        <Box boxSize="80%" m="auto" overflow="hidden">
+                        <Image _hover={{transform: "scale(1.15)", transition: "transform 1s"}} boxSize="100%" src={el.img} alt={el.name} />
+                        </Box>
+                        <Link href={el.link}><Text fontWeight={"700"} fontSize={["14px", "16px", "18px"]} m="5px 0px">{el.name}</Text></Link>
+                      </Box>
                 })}
               </Box>
             </Box>
