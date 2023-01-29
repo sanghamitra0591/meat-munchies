@@ -36,7 +36,7 @@ const Navbar = () => {
       top="0"
     >
       <Box flexBasis="12%" alignSelf="center">
-        <Link>
+        <Link href="/">
           <Logo />
         </Link>
       </Box>

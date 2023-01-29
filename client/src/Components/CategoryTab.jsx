@@ -161,7 +161,7 @@ export const CategoryTab = () => {
       </TabList>
       <TabPanels bgColor="#f1f1f1">
         <TabPanel>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -176,7 +176,7 @@ export const CategoryTab = () => {
               All
             </Box>
           </Link>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -191,7 +191,7 @@ export const CategoryTab = () => {
               Curry Cuts
             </Box>
           </Link>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -206,7 +206,7 @@ export const CategoryTab = () => {
               Gourmet Marinades
             </Box>
           </Link>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -253,7 +253,7 @@ export const CategoryTab = () => {
           </Link>
         </TabPanel>
         <TabPanel>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -268,7 +268,7 @@ export const CategoryTab = () => {
               All
             </Box>
           </Link>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -283,7 +283,7 @@ export const CategoryTab = () => {
               Curry Cuts
             </Box>
           </Link>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -298,7 +298,7 @@ export const CategoryTab = () => {
               Boneless & Mince
             </Box>
           </Link>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -313,7 +313,7 @@ export const CategoryTab = () => {
               Speciality Cuts
             </Box>
           </Link>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
@@ -328,7 +328,7 @@ export const CategoryTab = () => {
               Offals
             </Box>
           </Link>
-          <Link _hover={{ textDecoration: "none" }}>
+          <Link href="/chicken" _hover={{ textDecoration: "none" }}>
             <Box
               pl="3"
               pt="3"
