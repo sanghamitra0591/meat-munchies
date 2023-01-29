@@ -21,7 +21,7 @@ export const CategoryPopover = () => {
         />
       </PopoverTrigger>
       <PopoverContent w="500px">
-        <PopoverArrow bg="pink.500" />
+        <PopoverArrow bg="#D11243" />
         <PopoverBody>
           <CategoryTab />
         </PopoverBody>
