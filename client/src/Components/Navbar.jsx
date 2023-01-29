@@ -34,6 +34,7 @@ const Navbar = () => {
       position="sticky"
       bgColor="#fff"
       top="0"
+      zIndex={1000}
     >
       <Box flexBasis="12%" alignSelf="center">
         <Link href="/">

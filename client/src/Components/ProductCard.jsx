@@ -1,11 +1,16 @@
 import { Box, Button, Divider, Image, Text, Icon } from '@chakra-ui/react'
 import React from 'react'
+import { useNavigate } from "react-router-dom"
 import { MdDeliveryDining } from 'react-icons/md';
 
 const ProductCard = ({props}) => {
   const {name, image, desc, net, price, orgprice, discount, delivery}= props;
+  const navigate= useNavigate();
+  const handleClick= () => {
+    navigate("/id");
+  }
   return (
-    <Box>
+    <Box onClick={handleClick}>
       <Box bg="white" rounded="10px" textAlign="left" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px">
         <Image w="100%" src={image} alt="img" />
         <Box p="15px" color="#4e4b4b">
