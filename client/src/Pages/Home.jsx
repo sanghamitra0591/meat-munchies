@@ -121,7 +121,7 @@ const Home = () => {
                         <Image _hover={{transform: "scale(1.15)", transition: "transform 1s"}} boxSize="100%" src={el.img} alt={el.name} />
                         </Box>
                         <Link href={el.link}><Text fontWeight={"700"} fontSize={["14px", "16px", "18px"]} m="5px 0px">{el.name}</Text></Link>
-                      </Box>
+                    </Box>
                 })}
               </Box>
             </Box>
