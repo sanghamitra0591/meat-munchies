@@ -21,13 +21,19 @@ import { Logo } from "./Logo";
 const Navbar = () => {
   return (
     <Flex
-      mt="10px"
+      pt="3"
       alignItems="center"
       justifyContent="space-around"
       display="flex"
       flexDirection={{ sm: "column", md: "column", lg: "row" }}
       pl="8"
       pr="8"
+      pb="3"
+      boxShadow=" rgba(0, 0, 0, 0.16) 0px 1px 4px"
+      // border="1px solid red"
+      position="sticky"
+      bgColor="#fff"
+      top="0"
     >
       <Box flexBasis="12%" alignSelf="center">
         <Link>
