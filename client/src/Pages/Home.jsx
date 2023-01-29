@@ -71,11 +71,11 @@ const Home = () => {
           </Box>
         </Box>
         <Box w="87%" m="auto" p="20px 0px">
-          <Box className='meatopia' w="70%" m="auto" bg="#ffdc93" p="10px">
+          <Box className='meatopia' w={["90%", "90%", "70%"]} m="auto" bg="#ffdc93" p="10px">
             <Box bg="white">
               <Box w="95%" m="auto" p="10px 0px" display="flex" justifyContent="space-between" alignItems="center"> 
                 <Image h="50px" src={logo} alt="logo" />
-                <Button bg="#D11243" color="white" rounded="5px">JOIN NOW</Button>
+                <Button p="5px 10px" fontSize={["14px", "16px", "18px"]} _hover={{bg: "white", color: "#D11243", border: "1px solid #D11243"}} bg="#D11243" color="white" rounded="5px">JOIN NOW</Button>
               </Box>
             </Box>
             <Box>
@@ -84,16 +84,24 @@ const Home = () => {
           </Box>
           <Box className='discovernow'>
             <Box m="20px auto">
-              <Box w="21%" m="auto" bg="#f0eded" position="absolute" mt="-1%" left="40%" fontWeight="bold" fontSize="20px"><Text color="#D11243">Know The Licious Way</Text></Box>
-              <Box w="95%" m="auto" border="1px solid black" rounded="10px" p="20px" display="grid" fontSize={["16px", "18px", "20px"]}
+              <Box w={["57%", "35%", "25%"]} m="auto" bg="#f0eded" position="absolute" mt={["-2%", "-1.5%", "-1%"]} left={["22%", "32%", "38%"]} fontWeight="bold" fontSize={["15px", "16px", "19px"]}><Text color="#D11243">Know The Licious Way</Text></Box>
+              <Box w="95%" m="auto" border="1px solid black" rounded="10px" p="30px" display="grid" fontSize={["15px", "17px", "20px"]}
               gridTemplateColumns={["repeat(1, 1fr)", "repeat(3, 1fr)", "repeat(5, 1fr)"]}>
-                <Box borderRight="1px solid grey"><Text>Premium Produce</Text></Box>
-                <Box borderRight="1px solid grey"><Text>World-Class Central Production Unit</Text></Box>
-                <Box borderRight="1px solid grey"><Text>150 Quality Checks</Text></Box>
-                <Box borderRight="1px solid grey"><Text>Delivered Fresh Everyday</Text></Box>
-                <Box><Text>Extraordinary Cooking</Text></Box>
+                <Box borderRight={["none", "1px solid grey", "1px solid grey"]} borderBottom={["1px solid grey", "1px solid grey", "none"]}>
+                  <Text>Premium Produce</Text>
+                </Box>
+                <Box borderRight={["none", "1px solid grey", "1px solid grey"]} borderBottom={["1px solid grey", "1px solid grey", "none"]}>
+                  <Text>Extraordinary Cooking</Text>
+                </Box>
+                <Box borderRight={["none", "none", "1px solid grey"]} borderBottom={["1px solid grey", "1px solid grey", "none"]}>
+                  <Text>150 Quality Checks</Text>
+                </Box>
+                <Box borderRight={["none", "1px solid grey", "1px solid grey"]} borderBottom={["1px solid grey", "none", "none"]}>
+                  <Text>Delivered Fresh Everyday</Text>
+                </Box>
+                <Box><Text>World-Class Central Production Unit</Text></Box>
               </Box>
-              <Box mt="-2%"><Button border="2px solid #D11243" color="#D11243" rounded="5px">Discover How</Button></Box>
+              <Box mt={["-6%", "-4%", "-2%"]}><Button p="5px 10px" fontSize={["14px", "16px", "18px"]} _hover={{bg: "#D11243", color: "white"}} border="2px solid #D11243" color="#D11243" rounded="5px">Discover How</Button></Box>
             </Box>
           </Box>
           <Box w="90%" m="auto">
