@@ -35,7 +35,7 @@ const SinglePage = () => {
                 <Box w="47%">
                     <Image w="100%" rounded="10px" src={data.image} alt="img" />
                 </Box>
-                <Box w="51%">
+                <Box w="51%" color="#5b5757">
                     <Text fontWeight="600" fontSize="21px">{data.name}</Text>
                     <Text>{data.subcat}</Text>
                     <Divider m="7px auto" />
@@ -59,8 +59,8 @@ const SinglePage = () => {
                         food enthusiasts, and households. This white meat is known to support good health by providing high 
                         levels of lean protein, carbohydrates and fat.
                     </Text>
-                    <Box w="95%" m="auto" rounded="5px" mt="10px" border="1px solid grey" p="15px" textAlign="center" display="flex" justifyContent="space-between" alignItems="center">
-                        <Box w="50%" borderRight="1px solid grey" fontSize="15px" display="flex" alignItems="center" justifyContent="center">
+                    <Box w="95%" m="auto" rounded="5px" mt="10px" border="1px solid #b4b1b1" p="15px" textAlign="center" display="flex" justifyContent="space-between" alignItems="center">
+                        <Box w="50%" borderRight="1px solid #b4b1b1" fontSize="15px" display="flex" alignItems="center" justifyContent="center">
                             <Image boxSize="20px" src={pieces} alt="img" />
                             <Text>No. of pieces {data.pieces===0? "N/A" : data.pieces}</Text>
                         </Box>
