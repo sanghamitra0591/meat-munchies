@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Divider, Icon, Image, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Icon, Image, Link, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { TriangleUpIcon } from '@chakra-ui/icons'
 import farmraised from "../Assets/chicken/farmraised.png"
 import nochemical from "../Assets/chicken/nochemical.png"
@@ -476,13 +476,29 @@ const Chicken = () => {
     }
 ]
 
+ const currydata= data.filter((el)=>{
+    return el.subcat==="currycut"
+ })
+
+ const bonelessdata= data.filter((el)=>{
+    return el.subcat==="boneless"
+ })
+
+ const spcdata= data.filter((el)=>{
+    return el.subcat==="specialitycut"
+ })
+
+ const combodata= data.filter((el)=>{
+    return el.subcat==="combo"
+ })
+
   return (
     <Box bg="#F7F6F6">
       <Box w="87%" m="auto">
         <Box display="flex" alignItems="center" gap="5px" pt="10px" fontSize={["10px", "12px", "14px"]}>
-          <Link>Home</Link>
+          <Link href="/">Home</Link>
           <Icon transform="rotate(90deg)" boxSize="10px" as={TriangleUpIcon} />
-          <Link color="#D11243">Chicken</Link>
+          <Link href="/chicken" color="#D11243">Chicken</Link>
         </Box>
         <Box w={["100%", "100%", "70%"]} display="flex" alignItems="center" p="10px 0px" justifyContent="space-between">
           <Text color="#404040" fontWeight="600" fontSize={["18px", "22px", "30px"]}>Chicken</Text>
@@ -496,7 +512,103 @@ const Chicken = () => {
           </Box>
         </Box>
         <Divider />
-        <Box w={["95%", "100%", "70%"]} p="10px 0px" display={["grid", "grid", "flex"]} gap={["10px", "10px", ""]} gridTemplateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", ""]} justifyContent="space-between">
+        <Box></Box>
+        <Divider />
+        <Tabs colorScheme="red">
+            <TabList>
+                <Tab>
+                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["", "", "7px"]}>
+                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={all} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>All Chicken</Text>
+                    </Box>
+                </Tab>
+                <Tab>
+                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["", "", "7px"]}>
+                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={currycuts} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>Curry Cuts</Text>
+                    </Box>
+                </Tab>
+                <Tab>
+                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["2px", "4px", "7px"]}>
+                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={boneless} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>Boneless & Mince</Text>
+                    </Box>
+                </Tab>
+                <Tab>
+                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["", "", "7px"]}>
+                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={spc} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>Speciality Cuts</Text>
+                    </Box>
+                </Tab>
+                <Tab>
+                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["", "", "7px"]} textAlign="center">
+                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={combo} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>Chicken Combos</Text>
+                    </Box>
+                </Tab>
+            </TabList>
+            <TabPanels>
+                <TabPanel>
+                    <Box mt="20px">
+                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                            {data && data.map((el)=>{
+                            return <ProductCard key={el.id} props={el} />
+                            })}
+                        </Box>
+                    </Box>
+                </TabPanel>
+                <TabPanel>
+                    <Box mt="20px">
+                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                            {currydata && currydata.map((el)=>{
+                            return <ProductCard key={el.id} props={el} />
+                            })}
+                        </Box>
+                    </Box>
+                </TabPanel>
+                <TabPanel>
+                    <Box mt="20px">
+                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                            {bonelessdata && bonelessdata.map((el)=>{
+                            return <ProductCard key={el.id} props={el} />
+                            })}
+                        </Box>
+                    </Box>
+                </TabPanel>
+                <TabPanel>
+                    <Box mt="20px">
+                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                            {spcdata && spcdata.map((el)=>{
+                            return <ProductCard key={el.id} props={el} />
+                            })}
+                        </Box>
+                    </Box>
+                </TabPanel>
+                <TabPanel>
+                    <Box mt="20px">
+                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                            {combodata && combodata.map((el)=>{
+                            return <ProductCard key={el.id} props={el} />
+                            })}
+                        </Box>
+                    </Box>
+                </TabPanel>
+            </TabPanels>
+        </Tabs>
+        <Divider />
+      </Box>
+    </Box>
+  )
+}
+
+export default Chicken
+
+
+
+
+
+
+{/* <Box w={["95%", "100%", "70%"]} p="10px 0px" display={["grid", "grid", "flex"]} gap={["10px", "10px", ""]} gridTemplateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", ""]} justifyContent="space-between">
           <Box display="flex" alignItems="center" gap="7px">
               <Image boxSize="40px" rounded="50%" src={all} alt="img" />
               <Text color="#404040" fontWeight="600" fontSize={["13px", "14px", "16px"]}>All</Text>
@@ -519,17 +631,11 @@ const Chicken = () => {
           </Box>
         </Box>
         <Divider />
-        <Box></Box>
+        
         <Box mt="20px">
           <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
             {data && data.map((el)=>{
               return <ProductCard key={el.id} props={el} />
             })}
           </Box>
-        </Box>
-      </Box>
-    </Box>
-  )
-}
-
-export default Chicken
+        </Box> */}
