@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, Divider, Icon, Image, Link, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Icon, Image, Link, Select, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import { TriangleUpIcon } from '@chakra-ui/icons'
 import farmraised from "../Assets/chicken/farmraised.png"
 import nochemical from "../Assets/chicken/nochemical.png"
@@ -10,6 +10,7 @@ import spc from "../Assets/chicken/spc.png"
 import combo from "../Assets/chicken/combo.png"
 import ProductCard from '../Components/ProductCard'
 import axios from "axios";
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 const Chicken = () => {
 
@@ -478,33 +479,68 @@ const Chicken = () => {
 //   ]
 
 
+const [searchParams, setSearchParams]= useSearchParams();
+
+const {location}= useLocation();
+
+
  const [data, setData]= useState([]);
  const [currydata, setcurrydata]= useState([]);
  const [bonelessdata, setbonelessdata]= useState([]);
  const [spcdata, setspcdata]= useState([]);
  const [combodata, setcombodata]= useState([]);
 
+ const initSort= searchParams.getAll("sort");
+ const initpack= searchParams.getAll("pack");
+
+ const [sortby, setSortby]= useState(initSort || "");
+ const [pack, setPack]= useState(initpack || "");
+
+ const [express, setExpress]= useState(false);
+
+ useEffect(()=>{
+    let params= {};
+    sortby && (params.sort=sortby);
+    pack && (params.pack= pack);
+    setSearchParams(params);
+ }, [sortby, pack, searchParams, setSearchParams])
+
+ const handlePackSize= (e) => {
+  setPack(e.target.value);
+ }
+
+ const handlesort= (e) => {
+  setSortby(e.target.value);
+ }
+
 useEffect(()=>{
-  if(data.length===0){
-    getAllData();
-    getCurryData();
-    getBonelessData();
-    getSpcData();
-    getComboData();
+  if(location || data.length===0){
+    const getDataParams={
+      params: {
+        sort: sortby && sortby,
+        pack: pack && pack
+      }
+    }
+    getAllData(getDataParams);
+    getCurryData(getDataParams);
+    getBonelessData(getDataParams);
+    getSpcData(getDataParams);
+    getComboData(getDataParams);
   }
-}, [data.length]);
+}, [data.length, location, searchParams, pack, sortby]);
+
+console.log(data);
 
 
 
 
-const getAllData= ()=>{
-  return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken`)
+const getAllData= (params)=>{
+  return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken`, params)
       .then((r)=>{
         setData(r.data)
       })
       .catch((e)=>console.log(e));
-  }
-  console.log(data)
+}
 
   
 const getCurryData= ()=>{
@@ -540,17 +576,59 @@ const getComboData= ()=>{
 
 
   return (
-    <Box bg="#F7F6F6">
-      <Box w="87%" m="auto">
-        <Box display="flex" alignItems="center" gap="5px" pt="10px" fontSize={["10px", "12px", "14px"]}>
-          <Link href="/">Home</Link>
-          <Icon transform="rotate(90deg)" boxSize="10px" as={TriangleUpIcon} />
-          <Link href="/chicken" color="#D11243">Chicken</Link>
+    <Box
+     bg="#F7F6F6">
+      <Box
+       w="87%"
+        m="auto"
+        >
+        <Box
+          display="flex"
+          alignItems="center"
+          gap="5px" 
+          pt="10px" 
+          fontSize={["10px", "12px", "14px"]}
+          >
+          <Link 
+            href="/"
+            >
+            Home
+          </Link>
+          <Icon 
+            transform="rotate(90deg)" 
+            boxSize="10px" 
+            as={TriangleUpIcon} 
+          />
+          <Link 
+            href="/chicken" 
+            color="#D11243"
+            >
+            Chicken
+          </Link>
         </Box>
-        <Box w={["100%", "100%", "70%"]} display="flex" alignItems="center" p="10px 0px" justifyContent="space-between">
-          <Text color="#404040" fontWeight="600" fontSize={["18px", "22px", "30px"]}>Chicken</Text>
-          <Box display="flex" alignItems="center">
-            <Image boxSize={["20px", "30px", "50px"]} src={farmraised} alt="img" />
+        <Box 
+        w={["100%", "100%", "70%"]} 
+        display="flex" 
+        alignItems="center" 
+        p="10px 0px" 
+        justifyContent="space-between"
+        >
+          <Text 
+            color="#404040" 
+            fontWeight="600" 
+            fontSize={["18px", "22px", "30px"]}
+            >
+              Chicken
+          </Text>
+          <Box 
+            display="flex" 
+            alignItems="center"
+          >
+            <Image 
+            boxSize={["20px", "30px", "50px"]} 
+            src={farmraised} 
+            alt="img" 
+            />
             <Text color="#404040" fontSize={["10px", "10px", "14px"]}>Farm-raised superior breed</Text>
           </Box>
           <Box display="flex" alignItems="center">
@@ -594,8 +672,60 @@ const getComboData= ()=>{
                     </Box>
                 </Tab>
             </TabList>
+            <Box mt="15px" w="100%">
+              <Box w={["100%", "100%", "55%"]} color="#5b5757" display="flex" justifyContent="space-between" alignItems="center">
+                <Button
+                  p={["6px", "8px", "15px"]} 
+                  onClick={()=>setExpress(!express)} 
+                  fontSize={["13px", "15px", "18px"]} 
+                  _hover={{bg: "#f3f2f2"}} 
+                  bg={express ? "#fde8ed" : "white"} 
+                  border={express ? "1px solid #eb144a": "1px solid #a8a3a8"} 
+                  boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                  >
+                    Express Delivery
+                </Button>
+                <Select 
+                  onChange={handlePackSize}
+                  p={["3px", "6px", "9px"]}
+                  boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
+                  fontSize={["13px", "15px", "18px"]} 
+                  outline="1px solid #a8a3a8" 
+                  bg="white" 
+                  w="30%"  
+                >
+                  <option value="">Pack Size</option>
+                  <option value="large">Large Pack</option>
+                  <option value="regular">Regular Pack</option>
+                </Select>
+                <Select 
+                  onChange={handlesort}
+                  p={["3px", "6px", "9px"]}
+                  boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
+                  fontSize={["13px", "15px", "18px"]} 
+                  outline="1px solid #a8a3a8" 
+                  bg="white" 
+                  w="35%" 
+                >
+                  <option value="">Sort By Price</option>
+                  <option value="asc">Low to High</option>
+                  <option value="desc">High to Low</option>
+                </Select>
+              </Box>
+            </Box>
             <TabPanels>
                 <TabPanel>
+                  { data.length===0 ? 
+                    <Box w="100%" textAlign="center" mt="10%">
+                      <Spinner w="100px" h="100px"
+                        thickness='8px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='red.500'
+                        size='2xl'
+                      />
+                    </Box>
+                    : 
                     <Box mt="20px">
                         <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
                             {data && data.map((el)=>{
@@ -603,8 +733,20 @@ const getComboData= ()=>{
                             })}
                         </Box>
                     </Box>
+                  }
                 </TabPanel>
                 <TabPanel>
+                  { currydata.length===0 ? 
+                    <Box w="100%" textAlign="center" mt="10%">
+                      <Spinner w="100px" h="100px"
+                        thickness='8px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='red.500'
+                        size='2xl'
+                      />
+                    </Box>
+                    : 
                     <Box mt="20px">
                         <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
                             {currydata && currydata.map((el)=>{
@@ -612,8 +754,20 @@ const getComboData= ()=>{
                             })}
                         </Box>
                     </Box>
+                  }
                 </TabPanel>
                 <TabPanel>
+                  { bonelessdata.length===0 ? 
+                    <Box w="100%" textAlign="center" mt="10%">
+                      <Spinner w="100px" h="100px"
+                        thickness='8px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='red.500'
+                        size='2xl'
+                      />
+                    </Box>
+                    : 
                     <Box mt="20px">
                         <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
                             {bonelessdata && bonelessdata.map((el)=>{
@@ -621,8 +775,20 @@ const getComboData= ()=>{
                             })}
                         </Box>
                     </Box>
+                  }
                 </TabPanel>
                 <TabPanel>
+                  { spcdata.length===0 ? 
+                    <Box w="100%" textAlign="center" mt="10%">
+                      <Spinner w="100px" h="100px"
+                        thickness='8px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='red.500'
+                        size='2xl'
+                      />
+                    </Box>
+                    : 
                     <Box mt="20px">
                         <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
                             {spcdata && spcdata.map((el)=>{
@@ -630,8 +796,20 @@ const getComboData= ()=>{
                             })}
                         </Box>
                     </Box>
+                  }
                 </TabPanel>
                 <TabPanel>
+                  { combodata.length===0 ? 
+                    <Box w="100%" textAlign="center" mt="10%">
+                      <Spinner w="100px" h="100px"
+                        thickness='8px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='red.500'
+                        size='2xl'
+                      />
+                    </Box>
+                    : 
                     <Box mt="20px">
                         <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
                             {combodata && combodata.map((el)=>{
@@ -639,6 +817,7 @@ const getComboData= ()=>{
                             })}
                         </Box>
                     </Box>
+                  }
                 </TabPanel>
             </TabPanels>
         </Tabs>

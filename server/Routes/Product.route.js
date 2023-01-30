@@ -4,10 +4,75 @@ const { ProductModel } = require("../models/Product.Model");
 const productRouter= express.Router();
 
 productRouter.get("/", async(req, res)=>{
-    const query= req.query;
+    const {sort, pack, category}= req.query;
     try {
-        const data= await ProductModel.find(query);
-        res.send(data);
+        if(category){
+            if(sort && pack){
+                if(sort==="asc" && pack==="large"){
+                    const data= await ProductModel.find({category,  $gt: { weight: 500 } }).sort({ price: 1 });
+                    res.send(data);
+                }else if(sort==="asc" && pack==="regular"){
+                    const data= await ProductModel.find({category,  $lt: { weight: 500 } }).sort({ price: 1 });
+                    res.send(data);
+                }else if(sort==="desc" && pack==="large"){
+                    const data= await ProductModel.find({category,  $gt: { weight: 500 } }).sort({ price: -1 });
+                    res.send(data);
+                }else if(sort==="desc" && pack==="regular"){
+                    const data= await ProductModel.find({category,  $lt: { weight: 500 } }).sort({ price: -1 });
+                    res.send(data);
+                }
+            }else if(sort){
+                if(sort==="asc"){
+                    const data= await ProductModel.find({category }).sort({ price: 1 });
+                    res.send(data);
+                }else if(sort==="desc"){
+                    const data= await ProductModel.find({category }).sort({ price: -1 });
+                    res.send(data);
+                }
+            }else if(pack){
+                if(pack==="large"){
+                    const data= await ProductModel.find({category,  $gt: { weight: 500 } });
+                    res.send(data);
+                }else if(pack==="regular"){
+                    const data= await ProductModel.find({category,  $lt: { weight: 500 } });
+                    res.send(data);
+                }
+            }
+        }else{
+            if(sort && pack){
+                if(sort==="asc" && pack==="large"){
+                    const data= await ProductModel.find({$gt: { weight: 500 } }).sort({ price: 1 });
+                    res.send(data);
+                }else if(sort==="asc" && pack==="regular"){
+                    const data= await ProductModel.find({$lt: { weight: 500 } }).sort({ price: 1 });
+                    res.send(data);
+                }else if(sort==="desc" && pack==="large"){
+                    const data= await ProductModel.find({$gt: { weight: 500 } }).sort({ price: -1 });
+                    res.send(data);
+                }else if(sort==="desc" && pack==="regular"){
+                    const data= await ProductModel.find({$lt: { weight: 500 } }).sort({ price: -1 });
+                    res.send(data);
+                }
+            }else if(sort){
+                if(sort==="asc"){
+                    const data= await ProductModel.find().sort({ price: 1 });
+                    res.send(data);
+                }else if(sort==="desc"){
+                    const data= await ProductModel.find().sort({ price: -1 });
+                    res.send(data);
+                }
+            }else if(pack){
+                if(pack==="large"){
+                    const data= await ProductModel.find({ $gt: { weight: 500 } });
+                    res.send(data);
+                }else if(pack==="regular"){
+                    const data= await ProductModel.find({ $lt: { weight: 500 } });
+                    res.send(data);
+                }
+            }
+        }
+        // const data= await ProductModel.find(query);
+        // res.send(data);
     } catch (error) {
         res.send({"Error": error})
         console.log(error);
