@@ -23,7 +23,15 @@ const ProductCard = ({props}) => {
               {discount!=0 ? <Text textDecoration="line-through" fontSize={["10px", "11px", "14px"]}>MRP: ₹{orgprice}</Text> : <Box></Box>}
               {discount!=0 ? <Text fontSize={["11px", "12px", "15px"]} color="green">{discount}%OFF</Text> : <Box></Box>}
             </Box>
-            <Button _hover={{color:"#D11243", bg:"white", border:"1px solid #D11243"}} border="1px solid #D11243" bg="#D11243" color="white" p="7px" fontSize={["13px", "11px", "13px"]}>ADD TO CART</Button>
+            <Button _hover={{color:"#D11243", bg:"white", border:"1px solid #D11243"}} 
+              disabled= {delivery==="Out of Stock"}
+              border= {delivery!=="Out of Stock" ? "1px solid #D11243" : "1px solid #343232"}
+              bg={delivery!=="Out of Stock" ? "#D11243" : "#f3f2f2"}
+              color= {delivery!=="Out of Stock" ? "white" : "#343232"}
+              p="7px" 
+              fontSize={["13px", "11px", "13px"]}>
+              {delivery!=="Out of Stock" ? "ADD TO CART" : "Notify Me"}
+            </Button>
           </Box>
         </Box>
         <Divider />
