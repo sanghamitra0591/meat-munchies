@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema(
     },
     gender: { type: String, default: "Male" },
     marital_status: { type: String, default: "Single" },
+    otp: { type: String },
   },
   {
     timestamps: true,
@@ -33,8 +34,4 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.Model("user", userSchema);
-
-module.exports = {
-  UserModel,
-};
+module.exports = mongoose.model("user", userSchema);

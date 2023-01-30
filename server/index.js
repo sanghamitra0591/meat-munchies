@@ -1,7 +1,7 @@
 const express = require("express");
 const { connection } = require("./configs/db");
 const { productRouter } = require("./routes/Product.route");
-const { userRouter } = require("./routes/user.route");
+const { userRouter } = require("./routes/User.route");
 
 const app = express();
 
@@ -21,11 +21,11 @@ app.get("/", (req, res) => {
   res.send("Welcome to Home page");
 });
 
-app.use("/users", userRouter);
+app.use("/api/auth", userRouter);
 
 app.use("/product", productRouter);
 
-app.listen(process.env.port || 8080, async () => {
+app.listen(process.env.port, async () => {
   try {
     await connection;
     console.log("Connected to DB");
