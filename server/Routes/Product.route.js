@@ -122,14 +122,13 @@ productRouter.get("/", async(req, res)=>{
     }
 })
 
-productRouter.get("/id", async(req, res)=>{
+productRouter.get("/:id", async(req, res)=>{
     const id= req.params.id;
     try {
         const data= await ProductModel.find({"_id":id});
         res.send(data);
     } catch (error) {
         res.send({"Error": error})
-        console.log(error);
     }
 })
 
