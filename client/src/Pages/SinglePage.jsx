@@ -5,6 +5,7 @@ import weight from "../Assets/singlepage/weight.png"
 import pieces from "../Assets/singlepage/pieces.png"
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import notfound from "../Assets/no-record-found.gif"
 
 
 const SinglePage = () => {
@@ -49,14 +50,14 @@ const SinglePage = () => {
           <Icon transform="rotate(90deg)" boxSize="10px" as={TriangleUpIcon} />
           <Link href="/chicken">Chicken</Link>
           <Icon transform="rotate(90deg)" boxSize="10px" as={TriangleUpIcon} />
-          <Link href="/id" color="#D11243">{data.name}</Link>
+          <Link href={`/product/:${id.split(":")[1]}`} color="#D11243">{data.name}</Link>
         </Box>
         <Box w="90%" m="auto" bg="white" p="15px">
-            <Box display="flex" justifyContent="space-between">
-                <Box w="47%">
+            <Box display={["inline", "inline", "flex"]} justifyContent="space-between">
+                <Box w={["87%", "87%", "47%"]} m={["auto", "auto", ""]}>
                     <Image w="100%" rounded="10px" src={data.image} alt="img" />
                 </Box>
-                <Box w="51%" color="#5b5757">
+                <Box w={["87%", "87%", "51%"]} m={["auto", "auto", ""]} color="#5b5757">
                     <Text fontWeight="600" fontSize="21px">{data.name}</Text>
                     <Text>{data.subcat}</Text>
                     <Divider m="7px auto" />
@@ -81,12 +82,12 @@ const SinglePage = () => {
                         levels of lean protein, carbohydrates and fat.
                     </Text>
                     <Box w="95%" m="auto" rounded="5px" mt="10px" border="1px solid #b4b1b1" p="15px" textAlign="center" display="flex" justifyContent="space-between" alignItems="center">
-                        <Box w="50%" borderRight="1px solid #b4b1b1" fontSize="15px" display="flex" alignItems="center" justifyContent="center">
-                            <Image boxSize="20px" src={pieces} alt="img" />
+                        <Box w="50%" borderRight="1px solid #b4b1b1" fontSize={["11px", "13px", "15px"]} display="flex" alignItems="center" justifyContent="center">
+                            <Image boxSize={["13px", "16px", "20px"]} src={pieces} alt="img" />
                             <Text>No. of pieces {data.pieces===0? "N/A" : data.pieces}</Text>
                         </Box>
-                        <Box w="50%" fontSize="15px" display="flex" alignItems="center" justifyContent="center">
-                            <Image boxSize="20px" src={weight} alt="img" />
+                        <Box w="50%" fontSize={["11px", "13px", "15px"]} display="flex" alignItems="center" justifyContent="center">
+                            <Image boxSize={["13px", "16px", "20px"]} src={weight} alt="img" />
                             <Text>{data.weight===0? `Weight : N/A` : `${data.net} gms`}</Text>
                         </Box>
                     </Box>
@@ -101,7 +102,12 @@ const SinglePage = () => {
                 </Box>
             </Box>
         </Box>
-      </Box> : <h1>No Data Found</h1>}
+      </Box> 
+      : 
+        <Box w="100%" textAlign="center">
+        <Image w={["80%", "80%", "60%"]} m="auto" mt={["13%", "9%", "3%"]} src={notfound} alt="" />
+        </Box>
+      }
     </Box>
   )
 }
