@@ -30,7 +30,6 @@ const Navbar = () => {
       pr="8"
       pb="3"
       boxShadow=" rgba(0, 0, 0, 0.16) 0px 1px 4px"
-      // border="1px solid red"
       position="sticky"
       bgColor="#fff"
       top="0"

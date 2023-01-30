@@ -1,37 +1,36 @@
-const express= require("express");
+const express = require("express");
 const { connection } = require("./configs/db");
 const { productRouter } = require("./routes/Product.route");
-const { userRouter } = require("./routes/user.route");
+const { userRouter } = require("./routes/User.route");
 
-const app= express();
+const app = express();
 
 app.use(express.json());
 
 require("dotenv").config();
 
-const cors= require("cors");
+const cors = require("cors");
 
-app.use(cors({
-    origin: "*"
-}))
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-app.get("/", (req, res)=>{
-    res.send("Welcome to Home page");
-})
+app.get("/", (req, res) => {
+  res.send("Welcome to Home page");
+});
 
-app.use("/users", userRouter);
-
+app.use("/api/auth", userRouter);
 
 app.use("/product", productRouter);
 
-
-
-app.listen(process.env.port, async()=>{
-    try {
-        await connection;
-        console.log("Connected to DB")
-    } catch (error) {
-        console.log({"error":error});
-    }
-    console.log(`Running at port ${process.env.port}`);
-})
+app.listen(process.env.port, async () => {
+  try {
+    await connection;
+    console.log("Connected to DB");
+  } catch (error) {
+    console.log({ error: error });
+  }
+  console.log(`Running at port ${process.env.port}`);
+});
