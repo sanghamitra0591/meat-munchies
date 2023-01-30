@@ -4,7 +4,7 @@ const { ProductModel } = require("../models/Product.Model");
 const productRouter= express.Router();
 
 productRouter.get("/", async(req, res)=>{
-    const {sort, pack, category}= req.query;
+    const {sort, pack, category, subcat}= req.query;
     try {
         if(category){
             if(subcat){
@@ -39,7 +39,7 @@ productRouter.get("/", async(req, res)=>{
                         res.send(data);
                     }
                 }else{
-                    const data= await ProductModel.find({category, subcat,});
+                    const data= await ProductModel.find({category, subcat});
                     res.send(data);
                 }
             }else{
