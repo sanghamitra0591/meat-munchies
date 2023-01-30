@@ -27,8 +27,10 @@ const SinglePage = () => {
     const { id } = useParams();
 
     useEffect(()=>{
-        getData();
-    }, []);
+        if(dataarr.length===0){
+            getData();
+        }
+    }, [dataarr.length]);
       
       console.log({"data": data});
       console.log({"dataarr": dataarr});
@@ -36,7 +38,7 @@ const SinglePage = () => {
       
       
       const getData= ()=>{
-        return axios.get(`https://odd-boa-earrings.cyclic.app/product/:${id.split(":")[1]}`)
+        return axios.get(`https://odd-boa-earrings.cyclic.app/product/${id.split(":")[1]}`)
             .then((r)=>{
                 setdataarr(r.data)
                 setdata(r.data[0])
