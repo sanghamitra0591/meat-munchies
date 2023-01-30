@@ -7,7 +7,7 @@ const ProductCard = ({props}) => {
   const {_id, name, image, desc, net, price, orgprice, discount, delivery}= props;
   const navigate= useNavigate();
   const handleClick= () => {
-    navigate(`${_id}`);
+    navigate(`/product/:${_id}`);
   }
   return (
     <Box onClick={handleClick}>
