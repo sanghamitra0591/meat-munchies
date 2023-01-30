@@ -4,7 +4,7 @@ const { ProductModel } = require("../models/Product.Model");
 const productRouter= express.Router();
 
 productRouter.get("/", async(req, res)=>{
-    const {sort, pack, category, subcat}= req.query;
+    const {sort, pack, category, subcat, input}= req.query;
     try {
         if(category){
             if(subcat){
@@ -78,7 +78,16 @@ productRouter.get("/", async(req, res)=>{
                     res.send(data);
                 }
             }
-        }else{
+        }
+        else if(input){
+            if(input.length>2){
+                const data= await ProductModel.find({"name" : {"$regex": input, "$options": "i"} });
+                res.send(data);
+            }else{
+                res.send({"msg": "Please enter more than 3 letters"})
+            }
+        }
+        else{
             if(sort && pack){
                 if(sort==="asc" && pack==="large"){
                     const data= await ProductModel.find({"weight" : {$gt: 500} }).sort({ price: 1 });

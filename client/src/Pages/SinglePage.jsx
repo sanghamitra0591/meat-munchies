@@ -32,17 +32,11 @@ const SinglePage = () => {
         }
     }, [dataarr.length]);
       
-      console.log({"data": data});
-      console.log({"dataarr": dataarr});
-      
-      
-      
       const getData= ()=>{
         return axios.get(`https://odd-boa-earrings.cyclic.app/product/${id.split(":")[1]}`)
             .then((r)=>{
                 setdataarr(r.data)
                 setdata(r.data[0])
-                console.log(`https://odd-boa-earrings.cyclic.app/product/${id}`)
             })
             .catch((e)=>console.log(e));
         }

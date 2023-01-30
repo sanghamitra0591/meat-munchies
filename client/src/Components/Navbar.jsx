@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Flex,
@@ -8,6 +8,7 @@ import {
   InputRightElement,
   Link,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { SearchIcon } from "./icons/SearchIcon";
 import { ProfileIcon } from "./icons/ProfileIcon";
@@ -17,8 +18,32 @@ import { LocationIcon } from "./icons/LocationIcon";
 import { LoginDrawer } from "./LoginDrawer";
 import { CategoryPopover } from "./CategoryPopover";
 import { Logo } from "./Logo";
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+
+  const navigate= useNavigate();
+  const [search, setSearch] = useState("");
+
+  const toast = useToast()
+
+  const handleSearch= (e) => {
+    setSearch(e.target.value);
+    if (e.code === "Enter") {
+      if(search.length>2){
+        navigate(`/search/:${search}`);
+      }else{
+        toast({
+          title: "Please enter atleast 3 letters",
+          status: 'error',
+          duration: 300,
+          position: "top",
+          isClosable: true,
+        })
+      }
+    }
+  }
+
   return (
     <Flex
       pt="3"
@@ -56,6 +81,7 @@ const Navbar = () => {
           }}
         >
           <Input
+            onKeyUp={(e)=>handleSearch(e)}
             type="text"
             placeholder="Search for any delicious product"
             color="rgba(0,0,0,.3)"
