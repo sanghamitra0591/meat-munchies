@@ -22,7 +22,7 @@ const SinglePage = () => {
         "category": "Chicken",
         "subcat": "specialitycut"
     }
-    const [data, setdata] = useState({} || defaultdata);
+    const [data, setdata] = useState({});
     const [dataarr, setdataarr]= useState([]);
     const { id } = useParams();
 
