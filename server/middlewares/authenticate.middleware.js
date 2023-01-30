@@ -25,6 +25,6 @@ module.exports = async (req, res, next) => {
       message: "Authorization token was not provided or was not valid",
     });
   }
-  req.body.user_id = user.user._id;
+  req.body.user_id = user.user_id;
   return next();
 };
