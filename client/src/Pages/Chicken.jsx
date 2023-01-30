@@ -481,7 +481,7 @@ const Chicken = () => {
 
 const [searchParams, setSearchParams]= useSearchParams();
 
-const {location}= useLocation();
+const location= useLocation();
 
 
  const [data, setData]= useState([]);
@@ -490,8 +490,8 @@ const {location}= useLocation();
  const [spcdata, setspcdata]= useState([]);
  const [combodata, setcombodata]= useState([]);
 
- const initSort= searchParams.getAll("sort");
- const initpack= searchParams.getAll("pack");
+ const initSort= searchParams.get("sort");
+ const initpack= searchParams.get("pack");
 
  const [sortby, setSortby]= useState(initSort || "");
  const [pack, setPack]= useState(initpack || "");
@@ -503,7 +503,7 @@ const {location}= useLocation();
     sortby && (params.sort=sortby);
     pack && (params.pack= pack);
     setSearchParams(params);
- }, [sortby, pack, searchParams, setSearchParams])
+ }, [sortby, pack, searchParams, setSearchParams, setPack, setSortby])
 
  const handlePackSize= (e) => {
   setPack(e.target.value);
@@ -527,9 +527,8 @@ useEffect(()=>{
     getSpcData(getDataParams);
     getComboData(getDataParams);
   }
-}, [data.length, location, searchParams, pack, sortby]);
+}, [data.length, location, searchParams, pack, sortby, setPack, setSortby]);
 
-console.log(data);
 
 
 
@@ -543,30 +542,30 @@ const getAllData= (params)=>{
 }
 
   
-const getCurryData= ()=>{
-    return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken&subcat=currycut`)
+const getCurryData= (params)=>{
+    return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken&subcat=currycut`, params)
         .then((r)=>{
           setcurrydata(r.data)
         })
         .catch((e)=>console.log(e));
 }
     
-const getBonelessData= ()=>{
-    return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken&subcat=boneless`)
+const getBonelessData= (params)=>{
+    return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken&subcat=boneless`, params)
         .then((r)=>{
           setbonelessdata(r.data)
         })
         .catch((e)=>console.log(e));
 }
-const getSpcData= ()=>{
-    return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken&subcat=specialitycut`)
+const getSpcData= (params)=>{
+    return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken&subcat=specialitycut`, params)
         .then((r)=>{
           setspcdata(r.data)
         })
         .catch((e)=>console.log(e));
 }
-const getComboData= ()=>{
-    return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken&subcat=combo`)
+const getComboData= (params)=>{
+    return axios.get(`https://odd-boa-earrings.cyclic.app/product?category=Chicken&subcat=combo`, params)
         .then((r)=>{
           setcombodata(r.data)
         })
