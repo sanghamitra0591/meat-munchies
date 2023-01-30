@@ -1,28 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button, Divider, Icon, Image, Link, Text } from '@chakra-ui/react'
 import { TriangleUpIcon } from '@chakra-ui/icons'
 import weight from "../Assets/singlepage/weight.png"
 import pieces from "../Assets/singlepage/pieces.png"
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 
 const SinglePage = () => {
-    const data= {
-        "name": "Chicken Drumstick - Pack Of 6",
-        "image": "https://dao54xqhg9jfa.cloudfront.net/OMS-ProductMerchantdising/d667aa91-ba62-2117-a672-034b58bbac39/original/Chicken-Drumstick---Hero-Shot.jpg",
-        "price": 269,
-        "orgprice": 299,
-        "discount": 15,
-        "desc": "Juicy, meaty pieces by a dedicated team of Nakhrebaaz",
-        "pieces": 6,
-        "weight": 0,
-        "net": "Pieces: 6",
-        "delivery": "Today in-90 min",
-        "category": "Chicken",
-        "subcat": "specialitycut"
-    }
+    // const data= {
+    //     "name": "Chicken Drumstick - Pack Of 6",
+    //     "image": "https://dao54xqhg9jfa.cloudfront.net/OMS-ProductMerchantdising/d667aa91-ba62-2117-a672-034b58bbac39/original/Chicken-Drumstick---Hero-Shot.jpg",
+    //     "price": 269,
+    //     "orgprice": 299,
+    //     "discount": 15,
+    //     "desc": "Juicy, meaty pieces by a dedicated team of Nakhrebaaz",
+    //     "pieces": 6,
+    //     "weight": 0,
+    //     "net": "Pieces: 6",
+    //     "delivery": "Today in-90 min",
+    //     "category": "Chicken",
+    //     "subcat": "specialitycut"
+    // }
+    const [data, setdata] = useState({});
+    const [dataarr, setdataarr]= useState([]);
+    const { id } = useParams();
+
+    useEffect(()=>{
+        getData();
+    }, []);
+      
+      console.log({"data": data});
+      console.log({"dataarr": dataarr});
+      
+      
+      
+      const getData= ()=>{
+        return axios.get(`https://odd-boa-earrings.cyclic.app/product/:${id.split(":")[1]}`)
+            .then((r)=>{
+                setdataarr(r.data)
+                setdata(r.data[0])
+                console.log(`https://odd-boa-earrings.cyclic.app/product/${id}`)
+            })
+            .catch((e)=>console.log(e));
+        }
+
   return (
     <Box bg="#F7F6F6">
-      <Box w="87%" m="auto">
+      {dataarr.length>0 ? <Box w="87%" m="auto">
         <Box display="flex" alignItems="center" gap="5px" p="20px 0px" fontSize={["10px", "12px", "14px"]}>
           <Link href="/">Home</Link>
           <Icon transform="rotate(90deg)" boxSize="10px" as={TriangleUpIcon} />
@@ -80,7 +105,7 @@ const SinglePage = () => {
                 </Box>
             </Box>
         </Box>
-      </Box>
+      </Box> : <h1>No Data Found</h1>}
     </Box>
   )
 }
