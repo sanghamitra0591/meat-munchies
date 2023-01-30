@@ -8,21 +8,21 @@ import axios from "axios";
 
 
 const SinglePage = () => {
-    // const data= {
-    //     "name": "Chicken Drumstick - Pack Of 6",
-    //     "image": "https://dao54xqhg9jfa.cloudfront.net/OMS-ProductMerchantdising/d667aa91-ba62-2117-a672-034b58bbac39/original/Chicken-Drumstick---Hero-Shot.jpg",
-    //     "price": 269,
-    //     "orgprice": 299,
-    //     "discount": 15,
-    //     "desc": "Juicy, meaty pieces by a dedicated team of Nakhrebaaz",
-    //     "pieces": 6,
-    //     "weight": 0,
-    //     "net": "Pieces: 6",
-    //     "delivery": "Today in-90 min",
-    //     "category": "Chicken",
-    //     "subcat": "specialitycut"
-    // }
-    const [data, setdata] = useState({});
+    const defaultdata= {
+        "name": "Chicken Drumstick - Pack Of 6",
+        "image": "https://dao54xqhg9jfa.cloudfront.net/OMS-ProductMerchantdising/d667aa91-ba62-2117-a672-034b58bbac39/original/Chicken-Drumstick---Hero-Shot.jpg",
+        "price": 269,
+        "orgprice": 299,
+        "discount": 15,
+        "desc": "Juicy, meaty pieces by a dedicated team of Nakhrebaaz",
+        "pieces": 6,
+        "weight": 0,
+        "net": "Pieces: 6",
+        "delivery": "Today in-90 min",
+        "category": "Chicken",
+        "subcat": "specialitycut"
+    }
+    const [data, setdata] = useState({} || defaultdata);
     const [dataarr, setdataarr]= useState([]);
     const { id } = useParams();
 
