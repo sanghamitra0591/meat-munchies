@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom"
 import { MdDeliveryDining } from 'react-icons/md';
 
 const ProductCard = ({props}) => {
-  const {name, image, desc, net, price, orgprice, discount, delivery}= props;
+  const {_id, name, image, desc, net, price, orgprice, discount, delivery}= props;
   const navigate= useNavigate();
   const handleClick= () => {
-    navigate("/id");
+    navigate(`${_id}`);
   }
   return (
     <Box onClick={handleClick}>
