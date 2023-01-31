@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button, Divider, Icon, Image, Link, Text } from '@chakra-ui/react'
 import { TriangleUpIcon } from '@chakra-ui/icons'
 import weight from "../Assets/singlepage/weight.png"
 import pieces from "../Assets/singlepage/pieces.png"
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import notfound from "../Assets/no-record-found.gif"
 
 
 const SinglePage = () => {
-    const data= {
+    const defaultdata= {
         "name": "Chicken Drumstick - Pack Of 6",
         "image": "https://dao54xqhg9jfa.cloudfront.net/OMS-ProductMerchantdising/d667aa91-ba62-2117-a672-034b58bbac39/original/Chicken-Drumstick---Hero-Shot.jpg",
         "price": 269,
@@ -20,22 +23,41 @@ const SinglePage = () => {
         "category": "Chicken",
         "subcat": "specialitycut"
     }
+    const [data, setdata] = useState({});
+    const [dataarr, setdataarr]= useState([]);
+    const { id } = useParams();
+
+    useEffect(()=>{
+        if(dataarr.length===0){
+            getData();
+        }
+    }, [dataarr.length]);
+      
+      const getData= ()=>{
+        return axios.get(`https://odd-boa-earrings.cyclic.app/product/${id.split(":")[1]}`)
+            .then((r)=>{
+                setdataarr(r.data)
+                setdata(r.data[0])
+            })
+            .catch((e)=>console.log(e));
+        }
+
   return (
     <Box bg="#F7F6F6">
-      <Box w="87%" m="auto">
+      {dataarr.length>0 ? <Box w="87%" m="auto">
         <Box display="flex" alignItems="center" gap="5px" p="20px 0px" fontSize={["10px", "12px", "14px"]}>
           <Link href="/">Home</Link>
           <Icon transform="rotate(90deg)" boxSize="10px" as={TriangleUpIcon} />
           <Link href="/chicken">Chicken</Link>
           <Icon transform="rotate(90deg)" boxSize="10px" as={TriangleUpIcon} />
-          <Link href="/id" color="#D11243">{data.name}</Link>
+          <Link href={`/product/:${id.split(":")[1]}`} color="#D11243">{data.name}</Link>
         </Box>
         <Box w="90%" m="auto" bg="white" p="15px">
-            <Box display="flex" justifyContent="space-between">
-                <Box w="47%">
+            <Box display={["inline", "inline", "flex"]} justifyContent="space-between">
+                <Box w={["87%", "87%", "47%"]} m={["auto", "auto", ""]}>
                     <Image w="100%" rounded="10px" src={data.image} alt="img" />
                 </Box>
-                <Box w="51%" color="#5b5757">
+                <Box w={["87%", "87%", "51%"]} m={["auto", "auto", ""]} color="#5b5757">
                     <Text fontWeight="600" fontSize="21px">{data.name}</Text>
                     <Text>{data.subcat}</Text>
                     <Divider m="7px auto" />
@@ -60,12 +82,12 @@ const SinglePage = () => {
                         levels of lean protein, carbohydrates and fat.
                     </Text>
                     <Box w="95%" m="auto" rounded="5px" mt="10px" border="1px solid #b4b1b1" p="15px" textAlign="center" display="flex" justifyContent="space-between" alignItems="center">
-                        <Box w="50%" borderRight="1px solid #b4b1b1" fontSize="15px" display="flex" alignItems="center" justifyContent="center">
-                            <Image boxSize="20px" src={pieces} alt="img" />
+                        <Box w="50%" borderRight="1px solid #b4b1b1" fontSize={["11px", "13px", "15px"]} display="flex" alignItems="center" justifyContent="center">
+                            <Image boxSize={["13px", "16px", "20px"]} src={pieces} alt="img" />
                             <Text>No. of pieces {data.pieces===0? "N/A" : data.pieces}</Text>
                         </Box>
-                        <Box w="50%" fontSize="15px" display="flex" alignItems="center" justifyContent="center">
-                            <Image boxSize="20px" src={weight} alt="img" />
+                        <Box w="50%" fontSize={["11px", "13px", "15px"]} display="flex" alignItems="center" justifyContent="center">
+                            <Image boxSize={["13px", "16px", "20px"]} src={weight} alt="img" />
                             <Text>{data.weight===0? `Weight : N/A` : `${data.net} gms`}</Text>
                         </Box>
                     </Box>
@@ -80,7 +102,12 @@ const SinglePage = () => {
                 </Box>
             </Box>
         </Box>
-      </Box>
+      </Box> 
+      : 
+        <Box w="100%" textAlign="center">
+        <Image w={["80%", "80%", "60%"]} m="auto" mt={["13%", "9%", "3%"]} src={notfound} alt="" />
+        </Box>
+      }
     </Box>
   )
 }

@@ -5,7 +5,7 @@ import banner2 from "../Assets/HomePage/banner2.jpeg";
 import logo from "../Assets/HomePage/meatmunchies-logo.png";
 import deals from "../Assets/HomePage/deals.png";
 import chicken from "../Assets/HomePage/chicken.png";
-import fish from "../Assets/HomePage/fish.png";
+import fish from "../Assets/HomePage/Fish.png";
 import mutton from "../Assets/HomePage/mutton.png";
 import readytocook from "../Assets/HomePage/readytocook.png";
 import prawn from "../Assets/HomePage/prawn.png";
