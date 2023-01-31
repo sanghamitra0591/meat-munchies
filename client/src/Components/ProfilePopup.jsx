@@ -6,8 +6,17 @@ import {
   MenuItem,
   MenuDivider,
 } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 
 export const ProfilePopup = () => {
+
+  const location= useLocation();
+
+  const handleLogout= () => {
+    localStorage.removeItem("token");
+    location.reload();
+  }
+
   return (
     <Menu isLazy placement="auto">
       <MenuButton _hover={{ color: "#D11243" }}>Profile</MenuButton>
@@ -21,7 +30,7 @@ export const ProfilePopup = () => {
         <MenuDivider />
         <MenuItem>My Orders</MenuItem>
         <MenuDivider />
-        <MenuItem>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </MenuList>
     </Menu>
   );
