@@ -6,7 +6,7 @@ export const addToCart = (params) => (dispatch) => {
     type: types.ADDTOCART_FAILURE,
   });
   return axios
-    .get(`http://localhost:8080/shoes`, params)
+    .get(`https://odd-boa-earrings.cyclic.app/cart`, params)
     .then((res) => {
       dispatch({
         type: types.ADDTOCART_SUCCESS,
