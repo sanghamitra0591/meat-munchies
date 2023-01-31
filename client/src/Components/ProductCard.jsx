@@ -2,39 +2,78 @@ import { Box, Button, Divider, Image, Text, Icon } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MdDeliveryDining } from "react-icons/md";
+import { useToast } from '@chakra-ui/react'
 
 const ProductCard = ({ props }) => {
+
+  const cartData= JSON.parse(localStorage.getItem("cart")) || [];
+
   const { _id, name, image, desc, net, price, orgprice, discount, delivery } =
     props;
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/product/:${_id}`);
   };
+
+  const toast = useToast()
+
+  const handlenotify= () => {
+    toast({
+      title: 'We will yotify you',
+      status: 'warning',
+      position: "top",
+      duration: 1000,
+      isClosable: true,
+    })
+  }
+
+  const handlecart= () => {
+    if(cartData.includes(props)){
+      toast({
+        title: 'Item already exists in cart',
+        status: 'error',
+        position: "top",
+        duration: 1000,
+        isClosable: true,
+      })
+    } else{
+      cartData.push(props);
+      localStorage.setItem("cart", JSON.stringify(cartData));
+      toast({
+        title: 'Successfully added to cart',
+        status: 'success',
+        position: "top",
+        duration: 1000,
+        isClosable: true,
+      })
+    }
+  }
+
   return (
-    <Box onClick={handleClick}>
+    <Box>
       <Box
         bg="white"
         rounded="10px"
         textAlign="left"
         boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
       >
-        <Image w="100%" src={image} alt="img" />
+        <Image onClick={handleClick} w="100%" src={image} alt="img" />
         <Box p="15px" color="#4e4b4b">
-          <Text
+          <Text onClick={handleClick}
             h={["50px", "65px", "70px"]}
             fontWeight="600"
             fontSize={["17px", "15px", "17px"]}
           >
             {name}
           </Text>
-          <Text
+          <Text onClick={handleClick}
             color="#757070"
             h={["50px", "75px", "55px"]}
             fontSize={["14px", "13px", "13px"]}
           >
             {desc}
           </Text>
-          <Text h="30px" fontWeight="600" fontSize="14px">
+          <Text h="30px"  onClick={handleClick} fontWeight="600" fontSize="14px">
             {net}
           </Text>
           <Box
@@ -43,7 +82,7 @@ const ProductCard = ({ props }) => {
             alignItems="center"
             gap={["", "3px", ""]}
           >
-            <Box
+            <Box onClick={handleClick}
               w="60%"
               display="flex"
               justifyContent="space-between"
@@ -71,6 +110,7 @@ const ProductCard = ({ props }) => {
               )}
             </Box>
             <Button
+              onClick={delivery==="Out of Stock"? handlenotify : handlecart}
               _hover={{
                 color: "#D11243",
                 bg: "white",
@@ -92,7 +132,7 @@ const ProductCard = ({ props }) => {
           </Box>
         </Box>
         <Divider />
-        <Box
+        <Box onClick={handleClick}
           gap="10px"
           p="10px 0px"
           display="flex"

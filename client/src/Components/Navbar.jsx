@@ -117,8 +117,8 @@ const Navbar = () => {
       </Box>
       <Box flexBasis="7%" alignSelf="center">
         <HStack spacing="-2">
-          <CartIcon _hover={{ cursor: "pointer" }} />
-          <CartDrawer />
+          <CartIcon _hover={{ cursor: "pointer" }} onClick= {()=>navigate("/cart")} />
+          {/* <CartDrawer /> */}
         </HStack>
       </Box>
     </Flex>
