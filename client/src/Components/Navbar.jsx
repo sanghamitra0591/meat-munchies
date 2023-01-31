@@ -8,6 +8,7 @@ import {
   InputRightElement,
   Text,
   useToast,
+  Badge,
 } from "@chakra-ui/react";
 import { SearchIcon } from "./icons/SearchIcon";
 import { ProfileIcon } from "./icons/ProfileIcon";
@@ -113,12 +114,35 @@ const Navbar = () => {
       <Box flexBasis="7%" alignSelf="center ">
         <HStack spacing={token && token !== undefined ? "2" : "-2"}>
           <ProfileIcon _hover={{ cursor: "pointer" }} />
+          {console.log(token)}
           {token && token !== undefined ? <ProfilePopup /> : <LoginDrawer />}
         </HStack>
       </Box>
       <Box flexBasis="7%" alignSelf="center">
         <HStack spacing="-2">
-          <CartIcon _hover={{ cursor: "pointer" }} onClick= {()=>navigate("/cart")} />
+          <Box
+            display="flex"
+            h="50px"
+            alignItems="center"
+            // border="1px solid #D11243"
+          >
+            <CartIcon
+              _hover={{ cursor: "pointer" }}
+              onClick={() => navigate("/cart")}
+            />
+            <Box alignSelf="flex-start">
+              <Badge
+                borderRadius="100%"
+                fontSize="sm"
+                variant="solid"
+                bgColor="#D11243"
+                pl="2"
+                pr="2"
+              >
+                0
+              </Badge>
+            </Box>
+          </Box>
           {/* <CartDrawer /> */}
         </HStack>
       </Box>

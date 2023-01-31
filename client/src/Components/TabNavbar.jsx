@@ -10,6 +10,7 @@ import {
   VStack,
   Spacer,
   useToast,
+  Badge,
 } from "@chakra-ui/react";
 import { SearchIcon } from "./icons/SearchIcon";
 import { ProfileIcon } from "./icons/ProfileIcon";
@@ -74,7 +75,8 @@ const TabNavbar = () => {
                 onKeyUp={(e) => handleSearch(e)}
                 type="text"
                 placeholder="Search for any delicious product"
-                color="rgba(0,0,0,.3)"
+                // color="rgba(0,0,0,.3)"
+                fontSize="14px"
                 borderRadius="5px"
                 _hover={{
                   transition: ".3s",
@@ -92,10 +94,8 @@ const TabNavbar = () => {
           <Spacer />
           <Box alignSelf="center" pr="6">
             <HStack>
-              <LocationIcon _hover={{ cursor: "pointer" }} />
-              <Text _hover={{ cursor: "pointer", color: "#D11243" }}>
-                Location
-              </Text>
+              <CategoryDropdownIcon _hover={{ cursor: "pointer" }} />
+              <CategoryPopover />
             </HStack>
           </Box>
         </Flex>
@@ -112,13 +112,15 @@ const TabNavbar = () => {
           position="sticky"
           bgColor="#fff"
           top="0"
-          zIndex={1000}
+          // zIndex={1000}
           width="100%"
         >
           <Box alignSelf="center">
             <HStack>
-              <CategoryDropdownIcon _hover={{ cursor: "pointer" }} />
-              <CategoryPopover />
+              <LocationIcon _hover={{ cursor: "pointer" }} />
+              <Text _hover={{ cursor: "pointer", color: "#D11243" }}>
+                Location
+              </Text>
             </HStack>
           </Box>
           <Box alignSelf="center ">
@@ -132,8 +134,22 @@ const TabNavbar = () => {
             </HStack>
           </Box>
           <Box alignSelf="center">
-            <HStack spacing="-2">
-              <CartIcon _hover={{ cursor: "pointer" }} />
+            <HStack spacing="-4">
+              <Box display="flex" h="50px" alignItems="center">
+                <CartIcon _hover={{ cursor: "pointer" }} />
+                <Box alignSelf="flex-start">
+                  <Badge
+                    borderRadius="100%"
+                    fontSize="sm"
+                    variant="solid"
+                    bgColor="#D11243"
+                    pl="2"
+                    pr="2"
+                  >
+                    0
+                  </Badge>
+                </Box>
+              </Box>
               <CartDrawer />
             </HStack>
           </Box>

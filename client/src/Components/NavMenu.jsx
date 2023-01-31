@@ -68,8 +68,8 @@ export const NavMenu = () => {
           ></MenuButton>
           <MenuList h="300px" w="100vw">
             <Flex direction="column" alignItems="center">
-              <MenuItem border="1px solid red" display="flex">
-                <Box border="1px solid blue">
+              <MenuItem display="flex" justfiyContent="flex-end">
+                <Box>
                   <InputGroup
                     backgroundColor="#f8f8f8"
                     border="1px solid #eaeaea"
