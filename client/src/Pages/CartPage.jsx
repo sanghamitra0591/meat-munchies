@@ -23,11 +23,11 @@ const CartPage = () => {
 
   return (
     <Box>
-      {data.length>0 ? <Box w="85%" m="auto" display={["inline", "inline", "flex"]} justifyContent="space-between" alignItems="flex-start">
+      {data.length>1 ? <Box w="85%" m="auto" display={["inline", "inline", "flex"]} justifyContent="space-between" alignItems="flex-start">
         <Box w={["60%", "60%", "60%"]} m={["auto", "auto", ""]} pt="20px">
             <Text fontSize={["20px", "25px", "30px"]}>Order Summary : </Text>
             <Box w="100%">
-                {data.length>0 && data.map((el, index)=>{
+                {data.length>1 && data.map((el, index)=>{
                     return <Box key={el._id} p="10px 0px" w="80%">
                         <Box display={["inline", "flex", "flex"]} gap="10px" justifyContent="space-between" alignItems="center">
                             <Image boxSize={["50px", "70px", "90px"]} src={el.image} alt="avatar" />
