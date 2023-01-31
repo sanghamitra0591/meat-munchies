@@ -1,8 +1,8 @@
 const express = require("express");
 const { connection } = require("./configs/db");
-const { productRouter } = require("./routes/Product.route");
-const { userRouter } = require("./routes/User.route");
-
+const { productRouter } = require("./Routes/Product.route");
+const { userRouter } = require("./Routes/User.route");
+const { cartRouter } = require("./Routes/Cart.route");
 const app = express();
 
 app.use(express.json());
@@ -24,6 +24,8 @@ app.get("/", (req, res) => {
 app.use("/api/auth", userRouter);
 
 app.use("/product", productRouter);
+
+app.use("/cart", cartRouter);
 
 app.listen(process.env.port, async () => {
   try {

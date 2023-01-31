@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import { ProfilePopup } from "./ProfilePopup";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { CartDrawer } from "./CartDrawer";
 
 const Navbar = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
@@ -109,19 +110,15 @@ const Navbar = () => {
         </HStack>
       </Box>
       <Box flexBasis="7%" alignSelf="center ">
-        <HStack spacing={isAuth ? "2" : "-2"}>
+        <HStack spacing={localStorage.getItem("token") ? "2" : "-2"}>
           <ProfileIcon _hover={{ cursor: "pointer" }} />
-          {isAuth ? <ProfilePopup /> : <LoginDrawer />}
+          {localStorage.getItem("token") ? <ProfilePopup /> : <LoginDrawer />}
         </HStack>
       </Box>
       <Box flexBasis="7%" alignSelf="center">
-        <HStack>
+        <HStack spacing="-2">
           <CartIcon _hover={{ cursor: "pointer" }} />
-          <Box
-            _hover={{ background: "none", color: "#D11243", cursor: "pointer" }}
-          >
-            <Text>Cart</Text>
-          </Box>
+          <CartDrawer />
         </HStack>
       </Box>
     </Flex>
