@@ -18,9 +18,11 @@ userRouter.post("/", async (req, res) => {
       //   message: `Your OTP is ${otp}`,
       //   contactNumber: user.mobile,
       // });
+      const token = jwt.sign({ user_id: user._id }, process.env.JWT_SECRET);
       return res.status(201).send({
         message: "OTP Sent Successfully",
         otp: otp,
+        token,
       });
     } else {
       const user = await User.create({ mobile });
@@ -48,6 +50,7 @@ userRouter.post("/verifyotp", authenticate, async (req, res) => {
     const user = await User.findById(user_id);
     if (user.otp !== otp) {
       return res.status(400).send({
+        type: "error",
         message: "Incorrect OTP!",
       });
     }
@@ -55,6 +58,7 @@ userRouter.post("/verifyotp", authenticate, async (req, res) => {
     await User.findByIdAndUpdate(user_id, { otp: "" });
 
     return res.status(201).send({
+      type: "success",
       message: "OTP verified successfully",
     });
   } catch (e) {
