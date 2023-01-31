@@ -6,7 +6,6 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Link,
   Text,
   useToast,
 } from "@chakra-ui/react";
@@ -18,31 +17,35 @@ import { LocationIcon } from "./icons/LocationIcon";
 import { LoginDrawer } from "./LoginDrawer";
 import { CategoryPopover } from "./CategoryPopover";
 import { Logo } from "./Logo";
-import { useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { ProfilePopup } from "./ProfilePopup";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const isAuth = useSelector((store) => store.AuthReducer.isAuth);
 
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
-  const toast = useToast()
+  const toast = useToast();
 
-  const handleSearch= (e) => {
+  const handleSearch = (e) => {
     setSearch(e.target.value);
     if (e.code === "Enter") {
-      if(search.length>2){
+      if (search.length > 2) {
         navigate(`/search/:${search}`);
-      }else{
+      } else {
         toast({
           title: "Please enter atleast 3 letters",
-          status: 'error',
+          status: "error",
           duration: 300,
           position: "top",
           isClosable: true,
-        })
+        });
       }
     }
-  }
+  };
 
   return (
     <Flex
@@ -61,7 +64,7 @@ const Navbar = () => {
       zIndex={1000}
     >
       <Box flexBasis="12%" alignSelf="center">
-        <Link href="/">
+        <Link to="/">
           <Logo />
         </Link>
       </Box>
@@ -81,7 +84,7 @@ const Navbar = () => {
           }}
         >
           <Input
-            onKeyUp={(e)=>handleSearch(e)}
+            onKeyUp={(e) => handleSearch(e)}
             type="text"
             placeholder="Search for any delicious product"
             color="rgba(0,0,0,.3)"
@@ -106,9 +109,9 @@ const Navbar = () => {
         </HStack>
       </Box>
       <Box flexBasis="7%" alignSelf="center ">
-        <HStack spacing="-2">
+        <HStack spacing={isAuth ? "2" : "-2"}>
           <ProfileIcon _hover={{ cursor: "pointer" }} />
-          <LoginDrawer />
+          {isAuth ? <ProfilePopup /> : <LoginDrawer />}
         </HStack>
       </Box>
       <Box flexBasis="7%" alignSelf="center">

@@ -7,18 +7,20 @@ exports.generateOTP = (otp_length) => {
   for (let i = 0; i < otp_length; i++) {
     OTP += digits[Math.floor(Math.random() * 10)];
   }
+  // console.log("OTP:", OTP);
   return OTP;
 };
 
-exports.sendOTP = async ({ message, contactNumber }) => {
-  try {
-    const r = await fast2sms.sendMessage({
-      authorization: process.env.fast2sms,
+exports.sendOTP = ({ message, contactNumber }) => {
+  // console.log(message, contactNumber);
+  fast2sms
+    .sendMessage({
+      authorization: process.env.FAST2SMS,
       message,
       numbers: [contactNumber],
-    });
-    console.log(r);
-  } catch (e) {
-    console.log(e.message);
-  }
+    })
+    .then((response) => {
+      console.log(JSON.stringify(response));
+    })
+    .catch((error) => console.log(error));
 };

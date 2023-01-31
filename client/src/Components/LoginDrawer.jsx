@@ -13,14 +13,73 @@ import {
   Stack,
   Input,
   Link,
+  useToast,
 } from "@chakra-ui/react";
 import { Logo } from "./Logo";
+import { login_signup, verifyOTP } from "../Redux/AuthReducer/action";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const LoginDrawer = () => {
-  const [size, setSize] = useState("");
+  // const [size, setSize] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [verifyotp, setVerifyotp] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-  const [valid, setValid] = useState(false);
+  const dispatch = useDispatch();
+  const otp = useSelector((store) => store.AuthReducer.otp);
+  // const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+  // const isError = useSelector((store) => store.AuthReducer.isError);
+  const toast = useToast();
+  const navigate = useNavigate();
+  const [incorrectTost, setIncorrectToast] = useState(false);
+
+  const otpToast = (otp) => {
+    toast({
+      title: "OTP sent successfully .",
+      description: `Your OTP is: ${otp}`,
+      status: "success",
+      duration: 7000,
+      isClosable: true,
+    });
+  };
+
+  const handle_login_signup = () => {
+    if (mobileNumber) {
+      dispatch(login_signup({ mobile: mobileNumber })).then((res) => {
+        otpToast(res.payload.otp);
+        localStorage.setItem("token", res.payload.token);
+      });
+      setMobileNumber("");
+    }
+  };
+
+  const handle_otp_verification = () => {
+    if (verifyotp) {
+      dispatch(verifyOTP({ otp: verifyotp })).then((res) => {
+        // console.log(res);
+        // console.log("isAuth: ", isAuth, isError);
+        if (res.payload.type === "success") {
+          toast({
+            title: "OTP Verified.",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+          navigate("/", { replace: true });
+        } else {
+          setIncorrectToast(true);
+          toast({
+            title: "Incorrect OTP!",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+        }
+      });
+      setVerifyotp("");
+    }
+  };
 
   return (
     <>
@@ -39,7 +98,7 @@ export const LoginDrawer = () => {
           <DrawerHeader>
             <Logo />
           </DrawerHeader>
-          <DrawerBody overflowY="hidden" pt="230px" zIndex="200">
+          <DrawerBody overflowY="hidden" pt="200px" zIndex="200">
             <Box borderRadius="5px 5px 0 0" h="100vh" bgColor="#fff">
               <Stack direction="column">
                 <Box pl="3" pt="2">
@@ -49,16 +108,36 @@ export const LoginDrawer = () => {
                 </Box>
                 <Box pl="4" pr="4" pt="6">
                   <Input
-                    type="number"
+                    type="text"
                     variant="flushed"
                     placeholder="Enter Mobile Number"
                     borderColor="gray.400"
+                    maxLength="10"
                     pl="1"
                     focusBorderColor="gray.300"
+                    value={mobileNumber}
+                    onChange={(e) => setMobileNumber(e.target.value)}
                   />
                 </Box>
                 <Box pl="4" pt="4" pr="4">
-                  {!valid ? (
+                  {mobileNumber.length === 10 ? (
+                    <Button
+                      color="#ffffff"
+                      backgroundColor="#D11243"
+                      fontWeight="bold"
+                      fontSize="20px"
+                      size="lg"
+                      borderRadius="3px"
+                      _hover={{ backgroundColor: "none" }}
+                      _active={{ backgroundColor: "none" }}
+                      w="100%"
+                      onClick={() => {
+                        handle_login_signup();
+                      }}
+                    >
+                      Proceed Via OTP
+                    </Button>
+                  ) : (
                     <Button
                       color="#ffffff"
                       backgroundColor="#919191"
@@ -73,23 +152,40 @@ export const LoginDrawer = () => {
                     >
                       Proceed Via OTP
                     </Button>
-                  ) : (
-                    <Button
-                      color="#ffffff"
-                      backgroundColor="#D11243"
-                      fontWeight="bold"
-                      fontSize="20px"
-                      size="lg"
-                      borderRadius="3px"
-                      _hover={{ backgroundColor: "none" }}
-                      _active={{ backgroundColor: "none" }}
-                      w="100%"
-                    >
-                      Proceed Via OTP
-                    </Button>
                   )}
                 </Box>
-                <Box pl="5" pt="4" pr="2">
+                {(otp || incorrectTost) && (
+                  <>
+                    <Box pl="4" pr="4" pt="5" display="hidden">
+                      <Input
+                        variant="flushed"
+                        placeholder="Enter OTP"
+                        borderColor="gray.400"
+                        pl="1"
+                        focusBorderColor="gray.300"
+                        value={verifyotp}
+                        onChange={(e) => setVerifyotp(e.target.value)}
+                      />
+                    </Box>
+                    <Box pl="4" pt="3" pr="4">
+                      <Button
+                        color="#ffffff"
+                        backgroundColor="#D11243"
+                        fontWeight="bold"
+                        fontSize="20px"
+                        size="lg"
+                        borderRadius="3px"
+                        _hover={{ backgroundColor: "none" }}
+                        _active={{ backgroundColor: "none" }}
+                        w="100%"
+                        onClick={handle_otp_verification}
+                      >
+                        Enter OTP
+                      </Button>
+                    </Box>
+                  </>
+                )}
+                <Box pl="5" pt="1" pr="2">
                   <Text fontSize="md" color="#737477">
                     By signing in you agree to our
                     <Text as="span" color="#D11243">

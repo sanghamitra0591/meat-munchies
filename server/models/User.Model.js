@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       unique: true,
+      sparse: true,
       validate: [validator.isEmail, "Please enter a valid email."],
     },
     mobile: {
