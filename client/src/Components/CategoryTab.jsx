@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import i1 from "../Assets/Todays_Deal_1.png";
 import i2 from "../Assets/Chicken_20.png";
-import i3 from "../Assets/Fish.png"
+import i3 from "../Assets/fish.png";
 import i4 from "../Assets/Mutton_20.png";
 import i5 from "../Assets/RTC.png";
 import i6 from "../Assets/Prawn.png";
