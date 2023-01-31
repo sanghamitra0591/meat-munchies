@@ -7,7 +7,7 @@ export const login_signup = (payload) => (dispatch) => {
     type: types.LOGIN_SIGNUP_REQUEST,
   });
   return axios
-    .post("http://localhost:8080/api/auth", payload)
+    .post("https://odd-boa-earrings.cyclic.app/api/auth", payload)
     .then((res) =>
       dispatch({
         type: types.LOGIN_SIGNUP_SUCCESS,
@@ -27,7 +27,7 @@ export const verifyOTP = (payload) => (dispatch) => {
   dispatch({ type: types.ENTER_OTP_REQUEST });
   return axios({
     method: "post",
-    url: "http://localhost:8080/api/auth/verifyotp",
+    url: "https://odd-boa-earrings.cyclic.app/api/auth/verifyotp",
     data: {
       otp: payload.otp,
     },

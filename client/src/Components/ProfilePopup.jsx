@@ -5,17 +5,25 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
+  useToast,
 } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const ProfilePopup = () => {
+  const toast = useToast();
+  const navigate = useNavigate();
 
-  const location= useLocation();
-
-  const handleLogout= () => {
-    localStorage.removeItem("token");
-    location.reload();
-  }
+  const handleLogout = () => {
+    // localStorage.removeItem("token");
+    localStorage.clear();
+    toast({
+      title: "Logout Successfull.",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
+    navigate("/", { replace: true });
+  };
 
   return (
     <Menu isLazy placement="auto">

@@ -25,6 +25,7 @@ import { CartDrawer } from "./CartDrawer";
 
 const Navbar = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+  const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -54,7 +55,7 @@ const Navbar = () => {
       alignItems="center"
       justifyContent="space-around"
       display="flex"
-      flexDirection={{ sm: "column", md: "column", lg: "row" }}
+      // flexDirection={{ sm: "column", md: "column", lg: "row" }}
       pl="8"
       pr="8"
       pb="3"
@@ -110,9 +111,9 @@ const Navbar = () => {
         </HStack>
       </Box>
       <Box flexBasis="7%" alignSelf="center ">
-        <HStack spacing={localStorage.getItem("token") ? "2" : "-2"}>
+        <HStack spacing={token && token !== undefined ? "2" : "-2"}>
           <ProfileIcon _hover={{ cursor: "pointer" }} />
-          {localStorage.getItem("token") ? <ProfilePopup /> : <LoginDrawer />}
+          {token && token !== undefined ? <ProfilePopup /> : <LoginDrawer />}
         </HStack>
       </Box>
       <Box flexBasis="7%" alignSelf="center">
