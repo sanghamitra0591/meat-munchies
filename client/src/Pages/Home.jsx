@@ -295,7 +295,7 @@ const Home = () => {
                 gap="20px"
                 gridTemplateColumns={[
                   "repeat(1, 1fr)",
-                  "repeat(2, 1fr)",
+                  "repeat(1, 1fr)",
                   "repeat(3, 1fr)",
                 ]}
               >
@@ -305,7 +305,7 @@ const Home = () => {
                       <Box key={el.id} textAlign="center" color="#404040">
                         <Image
                           rounded="10px"
-                          boxSize="400px"
+                          boxSize={["200px", "300px", "400px"]}
                           src={el.img}
                           alt={el.name}
                         />
