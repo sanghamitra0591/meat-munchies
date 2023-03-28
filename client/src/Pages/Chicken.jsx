@@ -726,7 +726,7 @@ const getComboData= (params)=>{
                     </Box>
                     : 
                     <Box mt="20px">
-                        <Box display="grid" gap="15px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                        <Box display="grid" gap="15px" gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(2, 1fr)", lg:"repeat(3, 1fr)"}}>
                             {data && data.map((el)=>{
                             return <ProductCard key={el._id} props={el} />
                             })}
