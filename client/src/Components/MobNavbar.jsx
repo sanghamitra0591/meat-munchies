@@ -50,6 +50,8 @@ const MobNavbar = () => {
             backgroundColor="#f8f8f8"
             border="1px solid #eaeaea"
             borderRadius="5px"
+            display="flex"
+            alignItems="center"
             _hover={{
               borderColor: "#cbcbcb",
             }}
@@ -58,8 +60,9 @@ const MobNavbar = () => {
               onKeyUp={(e) => handleSearch(e)}
               type="text"
               placeholder="Search for any delicious product"
+              h="30px"
               // color="rgba(0,0,0,.3)"
-              fontSize={{ base: "0px", sm: "10px", md: "10px" }}
+              fontSize={{ base: "15px", md: "20px", lg: "20px" }}
               borderRadius="5px"
               _hover={{
                 transition: ".3s",
@@ -69,7 +72,8 @@ const MobNavbar = () => {
             />
             <InputRightElement
               pointerEvents="none"
-              pr="4"
+              pr={{base:"1", md:"4", lg:"4"}}
+              pb={{base:"3", md:"4", lg:"4"}}
               children={<SearchIcon />}
             />
           </InputGroup>

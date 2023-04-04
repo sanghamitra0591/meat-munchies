@@ -68,7 +68,7 @@ export const NavMenu = () => {
           ></MenuButton>
           <MenuList h="300px" w="100vw">
             <Flex direction="column" alignItems="center">
-              <MenuItem display="flex" justfiyContent="flex-end">
+              <MenuItem display="flex" justifyContent="flex-end">
                 <Box>
                   <InputGroup
                     backgroundColor="#f8f8f8"
@@ -130,9 +130,12 @@ export const NavMenu = () => {
               </MenuItem>
               <MenuItem>
                 <Box flexBasis="7%" alignSelf="center">
-                  <HStack spacing="-2">
-                    <CartIcon _hover={{ cursor: "pointer" }} />
-                    <CartDrawer />
+                  <HStack>
+                    <CartIcon onClick={() => navigate("/cart")} _hover={{ cursor: "pointer" }} />
+                    <Text onClick={() => navigate("/cart")} _hover={{ cursor: "pointer", color: "#D11243" }}>
+                      Cart
+                    </Text>
+                    {/* <CartDrawer /> */}
                   </HStack>
                 </Box>
               </MenuItem>

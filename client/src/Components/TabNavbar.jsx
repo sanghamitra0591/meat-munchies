@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -29,6 +29,15 @@ import { CartDrawer } from "./CartDrawer";
 const TabNavbar = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const token = localStorage.getItem("token");
+
+  
+  let cartData= JSON.parse(localStorage.getItem("cart")) || [];
+
+  
+  useEffect(()=>{
+    cartData= JSON.parse(localStorage.getItem("cart")) || [];
+  }, [cartData.length, cartData])
+
 
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -136,7 +145,7 @@ const TabNavbar = () => {
           <Box alignSelf="center">
             <HStack spacing="-4">
               <Box display="flex" h="50px" alignItems="center">
-                <CartIcon _hover={{ cursor: "pointer" }} />
+                <CartIcon onClick={() => navigate("/cart")} _hover={{ cursor: "pointer" }} />
                 <Box alignSelf="flex-start">
                   <Badge
                     borderRadius="100%"
@@ -146,11 +155,11 @@ const TabNavbar = () => {
                     pl="2"
                     pr="2"
                   >
-                    0
+                    {cartData.length}
                   </Badge>
                 </Box>
               </Box>
-              <CartDrawer />
+              {/* <CartDrawer /> */}
             </HStack>
           </Box>
         </Flex>

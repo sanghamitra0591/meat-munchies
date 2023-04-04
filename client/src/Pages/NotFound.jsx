@@ -6,7 +6,7 @@ const NotFound = () => {
   return (
     <Box>
       <Box w="85%" m="auto">
-        <Image w={["100%", "90%", "70%"]} m="auto" src={pagenotfound} alt="img" />
+        <Image w={{base:"100%", md:"90%", lg:"70%"}} m="auto" src={pagenotfound} alt="img" />
       </Box>
     </Box>
   )

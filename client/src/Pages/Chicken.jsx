@@ -586,7 +586,7 @@ const getComboData= (params)=>{
           alignItems="center"
           gap="5px" 
           pt="10px" 
-          fontSize={["10px", "12px", "14px"]}
+          fontSize={{base:"10px", md:"12px", lg:"14px"}}
           >
           <Link 
             href="/"
@@ -605,8 +605,8 @@ const getComboData= (params)=>{
             Chicken
           </Link>
         </Box>
-        <Box 
-        w={["100%", "100%", "70%"]} 
+        <Box
+        w={{base:"100%", md:"100%", lg:"70%"}} 
         display="flex" 
         alignItems="center" 
         p="10px 0px" 
@@ -615,7 +615,7 @@ const getComboData= (params)=>{
           <Text 
             color="#404040" 
             fontWeight="600" 
-            fontSize={["18px", "22px", "30px"]}
+            fontSize={{base:"18px", md:"22px", lg:"30px"}}
             >
               Chicken
           </Text>
@@ -624,74 +624,77 @@ const getComboData= (params)=>{
             alignItems="center"
           >
             <Image 
-            boxSize={["20px", "30px", "50px"]} 
+            boxSize={{base:"20px", md:"30px", lg:"50px"}} 
             src={farmraised} 
             alt="img" 
             />
-            <Text color="#404040" fontSize={["10px", "10px", "14px"]}>Farm-raised superior breed</Text>
+            <Text color="#404040" fontSize={{base:"10px", md:"10px", lg:"14px"}}>Farm-raised superior breed</Text>
           </Box>
           <Box display="flex" alignItems="center">
-            <Image boxSize={["20px", "30px", "50px"]} src={nochemical} alt="img" />
-            <Text color="#404040" fontSize={["9px", "10px", "14px"]}>No Added Chemical , Antibiotic residue free.</Text>
+            <Image boxSize={{base:"20px", md:"30px", lg:"50px"}} src={nochemical} alt="img" />
+            <Text color="#404040" fontSize={{base:"9px", md:"10px", lg:"14px"}}>No Added Chemical , Antibiotic residue free.</Text>
           </Box>
         </Box>
         <Divider />
         <Box></Box>
         <Divider />
         <Tabs colorScheme="red">
-            <TabList>
+            <TabList w="100%" overflow="scroll" p="2px">
                 <Tab>
-                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["", "", "7px"]}>
-                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={all} alt="img" />
-                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>All Chicken</Text>
+                    <Box display={{base:"inline", md:"inline", lg:"flex"}} alignItems="center" gap={{base:"", md:"", lg:"7px"}}>
+                        <Image m="auto" boxSize={{base:"28px", md:"30px", lg:"40px"}} rounded="50%" src={all} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={{base:"9px", md:"12px", lg:"16px"}}>All Chicken</Text>
                     </Box>
                 </Tab>
                 <Tab>
-                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["", "", "7px"]}>
-                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={currycuts} alt="img" />
-                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>Curry Cuts</Text>
+                    <Box display={{base:"inline", md:"inline", lg:"flex"}} alignItems="center" gap={{base:"", md:"", lg:"7px"}}>
+                        <Image m="auto" boxSize={{base:"28px", md:"30px", lg:"40px"}} rounded="50%" src={currycuts} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={{base:"9px", md:"12px", lg:"16px"}}>Curry Cuts</Text>
                     </Box>
                 </Tab>
                 <Tab>
-                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["2px", "4px", "7px"]}>
-                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={boneless} alt="img" />
-                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>Boneless & Mince</Text>
+                    <Box display={{base:"inline", md:"inline", lg:"flex"}} alignItems="center" gap={{base:"2px", md:"4px", lg:"7px"}}>
+                        <Image m="auto" boxSize={{base:"28px", md:"30px", lg:"40px"}} rounded="50%" src={boneless} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={{base:"9px", md:"12px", lg:"16px"}}>Boneless & Mince</Text>
                     </Box>
                 </Tab>
                 <Tab>
-                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["", "", "7px"]}>
-                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={spc} alt="img" />
-                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>Speciality Cuts</Text>
+                    <Box display={{base:"inline", md:"inline", lg:"flex"}} alignItems="center" gap={{base:"", md:"", lg:"7px"}}>
+                        <Image m="auto" boxSize={{base:"28px", md:"30px", lg:"40px"}} rounded="50%" src={spc} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={{base:"9px", md:"12px", lg:"16px"}}>Speciality Cuts</Text>
                     </Box>
                 </Tab>
                 <Tab>
-                    <Box display={["inline", "inline", "flex"]} alignItems="center" gap={["", "", "7px"]} textAlign="center">
-                        <Image m="auto" boxSize={["30px", "30px", "40px"]} rounded="50%" src={combo} alt="img" />
-                        <Text color="#404040" fontWeight="600" fontSize={["10px", "12px", "16px"]}>Chicken Combos</Text>
+                    <Box display={{base:"inline", md:"inline", lg:"flex"}} alignItems="center" gap={{base:"", md:"", lg:"7px"}} textAlign="center">
+                        <Image m="auto" boxSize={{base:"28px", md:"30px", lg:"40px"}} rounded="50%" src={combo} alt="img" />
+                        <Text color="#404040" fontWeight="600" fontSize={{base:"9px", md:"12px", lg:"16px"}}>Chicken Combos</Text>
                     </Box>
                 </Tab>
             </TabList>
             <Box mt="15px" w="100%">
-              <Box w={["100%", "100%", "55%"]} color="#5b5757" display="flex" justifyContent="space-between" alignItems="center">
+              <Box w={{base:"100%", md:"100%", lg:"55%"}} color="#5b5757" display="flex" justifyContent="space-between" alignItems="center">
                 <Button
-                  p={["6px", "8px", "15px"]} 
+                  p={{base:"4px", md:"8px", lg:"15px"}} 
                   onClick={()=>setExpress(!express)} 
-                  fontSize={["13px", "15px", "18px"]} 
+                  fontSize={{base:"12px", md:"15px", lg:"18px"}} 
                   _hover={{bg: "#f3f2f2"}} 
                   bg={express ? "#fde8ed" : "white"} 
                   border={express ? "1px solid #eb144a": "1px solid #a8a3a8"} 
-                  boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
+                  boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
+                  w="38%"  
+                  h={{base:"30px", md:"35px", lg:"40px"}}
                   >
                     Express Delivery
                 </Button>
                 <Select 
                   onChange={handlePackSize}
-                  p={["3px", "6px", "9px"]}
+                  p={{base:"3px", md:"6px", lg:"9px"}}
                   boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
-                  fontSize={["13px", "15px", "18px"]} 
+                  fontSize={{base:"13px", md:"15px", lg:"18px"}} 
                   outline="1px solid #a8a3a8" 
                   bg="white" 
-                  w="30%"  
+                  w="33%"  
+                  h={{base:"30px", md:"35px", lg:"40px"}}
                 >
                   <option value="">Pack Size</option>
                   <option value="large">Large Pack</option>
@@ -699,12 +702,13 @@ const getComboData= (params)=>{
                 </Select>
                 <Select 
                   onChange={handlesort}
-                  p={["3px", "6px", "9px"]}
+                  p={{base:"3px", md:"6px", lg:"9px"}}
                   boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
-                  fontSize={["13px", "15px", "18px"]} 
+                  fontSize={{base:"13px", md:"15px", lg:"18px"}} 
                   outline="1px solid #a8a3a8" 
                   bg="white" 
-                  w="35%" 
+                  w="32%"  
+                  h={{base:"30px", md:"35px", lg:"40px"}}
                 >
                   <option value="">Sort By Price</option>
                   <option value="asc">Low to High</option>
@@ -747,7 +751,7 @@ const getComboData= (params)=>{
                     </Box>
                     : 
                     <Box mt="20px">
-                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                        <Box display="grid" gap="20px" gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(2, 1fr)", lg:"repeat(3, 1fr)"}}>
                             {currydata && currydata.map((el)=>{
                             return <ProductCard key={el._id} props={el} />
                             })}
@@ -768,7 +772,7 @@ const getComboData= (params)=>{
                     </Box>
                     : 
                     <Box mt="20px">
-                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                        <Box display="grid" gap="20px" gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(2, 1fr)", lg:"repeat(3, 1fr)"}}>
                             {bonelessdata && bonelessdata.map((el)=>{
                             return <ProductCard key={el._id} props={el} />
                             })}
@@ -789,7 +793,7 @@ const getComboData= (params)=>{
                     </Box>
                     : 
                     <Box mt="20px">
-                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                        <Box display="grid" gap="20px" gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(2, 1fr)", lg:"repeat(3, 1fr)"}}>
                             {spcdata && spcdata.map((el)=>{
                             return <ProductCard key={el._id} props={el} />
                             })}
@@ -810,7 +814,7 @@ const getComboData= (params)=>{
                     </Box>
                     : 
                     <Box mt="20px">
-                        <Box display="grid" gap="20px" gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}>
+                        <Box display="grid" gap="20px" gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(2, 1fr)", lg:"repeat(3, 1fr)"}}>
                             {combodata && combodata.map((el)=>{
                             return <ProductCard key={el._id} props={el} />
                             })}

@@ -60,16 +60,16 @@ const ProductCard = ({ props }) => {
         <Image onClick={handleClick} w="100%" src={image} alt="img" />
         <Box p="15px" color="#4e4b4b">
           <Text onClick={handleClick}
-            h={["50px", "65px", "70px"]}
+            h={{base:"50px", md:"65px", lg:"70px"}}
             fontWeight="600"
-            fontSize={["17px", "15px", "17px"]}
+            fontSize={{base:"17px", md:"15px", lg:"17px"}}
           >
             {name}
           </Text>
           <Text onClick={handleClick}
             color="#757070"
-            h={["50px", "75px", "55px"]}
-            fontSize={["14px", "13px", "13px"]}
+            h={{base:"50px", md:"75px", lg:"55px"}}
+            fontSize={{base:"14px", md:"13px", lg:"13px"}}
           >
             {desc}
           </Text>
@@ -80,7 +80,7 @@ const ProductCard = ({ props }) => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            gap={["", "3px", ""]}
+            gap={{base:"", md:"3px", lg:""}}
           >
             <Box onClick={handleClick}
               w="60%"
@@ -88,13 +88,13 @@ const ProductCard = ({ props }) => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Text color="#D11243" fontSize={["12px", "12px", "16px"]}>
+              <Text color="#D11243" fontSize={{base:"12px", md:"12px", lg:"16px"}}>
                 MRP: ₹{price}
               </Text>
               {discount != 0 ? (
                 <Text
                   textDecoration="line-through"
-                  fontSize={["10px", "11px", "14px"]}
+                  fontSize={{base:"10px", md:"11px", lg:"14px"}}
                 >
                   MRP: ₹{orgprice}
                 </Text>
@@ -102,7 +102,7 @@ const ProductCard = ({ props }) => {
                 <Box></Box>
               )}
               {discount != 0 ? (
-                <Text fontSize={["11px", "12px", "15px"]} color="green">
+                <Text fontSize={{base:"11px", md:"12px", lg:"15px"}} color="green">
                   {discount}%OFF
                 </Text>
               ) : (
@@ -124,8 +124,9 @@ const ProductCard = ({ props }) => {
               }
               bg={delivery !== "Out of Stock" ? "#D11243" : "#f3f2f2"}
               color={delivery !== "Out of Stock" ? "white" : "#343232"}
-              p="7px"
-              fontSize={["13px", "11px", "13px"]}
+              p="7px" 
+              h={{base:"25px", md:"30px", lg:"40px"}} 
+              fontSize={{base:"10px", md:"13px", lg:"16px"}}
             >
               {delivery !== "Out of Stock" ? "ADD TO CART" : "Notify Me"}
             </Button>
@@ -142,14 +143,14 @@ const ProductCard = ({ props }) => {
           {delivery !== "Out of Stock" ? (
             <Icon
               color="#D11243"
-              boxSize={["30px", "25px", "30px"]}
+              boxSize={{base:"30px", md:"25px", lg:"30px"}}
               as={MdDeliveryDining}
             />
           ) : (
             <Box></Box>
           )}
           {delivery !== "Out of Stock" ? (
-            <Text color="#827d7d" fontSize={["16px", "14px", "16px"]}>
+            <Text color="#827d7d" fontSize={{base:"16px", md:"14px", lg:"16px"}}>
               {delivery}
             </Text>
           ) : (

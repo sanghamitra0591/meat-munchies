@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -28,10 +28,17 @@ const Navbar = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const token = localStorage.getItem("token");
 
+  
+  let cartData= JSON.parse(localStorage.getItem("cart")) || [];
+
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
   const toast = useToast();
+
+  useEffect(()=>{
+    cartData= JSON.parse(localStorage.getItem("cart")) || [];
+  }, [cartData.length, cartData])
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -139,7 +146,7 @@ const Navbar = () => {
                 pl="2"
                 pr="2"
               >
-                0
+                {cartData.length}
               </Badge>
             </Box>
           </Box>

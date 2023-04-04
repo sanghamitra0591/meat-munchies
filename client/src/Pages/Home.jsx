@@ -19,21 +19,23 @@ import cards from "../Assets/HomePage/cards.PNG";
 import blog1 from "../Assets/HomePage/blog1.PNG";
 import blog2 from "../Assets/HomePage/blog2.PNG";
 import blog3 from "../Assets/HomePage/blog3.PNG";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate= useNavigate();
   const categories = [
-    { id: 1, img: deals, name: "Today's Deals", link: "/" },
+    { id: 1, img: deals, name: "Today's Deals", link: "/chicken" },
     { id: 2, img: chicken, name: "Chicken", link: "/chicken" },
-    { id: 3, img: fish, name: "Fish & Seafood", link: "/" },
-    { id: 4, img: mutton, name: "Mutton", link: "/" },
-    { id: 5, img: readytocook, name: "Ready to Cook", link: "/" },
-    { id: 6, img: prawn, name: "Prawns", link: "/" },
-    { id: 7, img: coldcut, name: "Cold Cuts", link: "/" },
-    { id: 8, img: spread, name: "Spreads", link: "/" },
-    { id: 9, img: egg, name: "Eggs", link: "/" },
-    { id: 10, img: biriyani, name: "Biriyani & Kebab", link: "/" },
-    { id: 11, img: combo, name: "Combos", link: "/" },
-    { id: 12, img: gourmet, name: "Gourmet", link: "/" },
+    { id: 3, img: fish, name: "Fish & Seafood", link: "/chicken" },
+    { id: 4, img: mutton, name: "Mutton", link: "/chicken" },
+    { id: 5, img: readytocook, name: "Ready to Cook", link: "/chicken" },
+    { id: 6, img: prawn, name: "Prawns", link: "/chicken" },
+    { id: 7, img: coldcut, name: "Cold Cuts", link: "/chicken" },
+    { id: 8, img: spread, name: "Spreads", link: "/chicken" },
+    { id: 9, img: egg, name: "Eggs", link: "/chicken" },
+    { id: 10, img: biriyani, name: "Biriyani & Kebab", link: "/chicken" },
+    { id: 11, img: combo, name: "Combos", link: "/chicken" },
+    { id: 12, img: gourmet, name: "Gourmet", link: "/chicken" },
   ];
 
   const blogs = [
@@ -51,7 +53,7 @@ const Home = () => {
         <Box>
           <Box w="87%" m="auto" p="20px 0px">
             <Box w="95%" m="auto" textAlign="left" mb="10px" color="#4d4d4d">
-              <Text fontSize={["17px", "20px", "23px"]} fontWeight="bold">
+              <Text fontSize={{base:"17px", md:"20px", lg:"23px"}} fontWeight="bold">
                 Shop by categories
               </Text>
               <Text fontSize="14px">Freshest meats just for you</Text>
@@ -59,11 +61,7 @@ const Home = () => {
             <Box>
               <Box
                 display="grid"
-                gridTemplateColumns={[
-                  "repeat(2, 1fr)",
-                  "repeat(3, 1fr)",
-                  "repeat(4, 1fr)",
-                ]}
+                gridTemplateColumns={{base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)"}}
               >
                 {categories &&
                   categories.map((el) => {
@@ -78,12 +76,14 @@ const Home = () => {
                             boxSize="100%"
                             src={el.img}
                             alt={el.name}
+                            onClick={()=>navigate(el.link)}
+                            cursor="pointer"
                           />
                         </Box>
                         <Link href={el.link}>
                           <Text
                             fontWeight={"700"}
-                            fontSize={["14px", "16px", "18px"]}
+                            fontSize={{base:"14px", md:"16px", lg:"18px"}}
                             m="5px 0px"
                           >
                             {el.name}
@@ -99,7 +99,7 @@ const Home = () => {
         <Box w="87%" m="auto" p="20px 0px">
           <Box
             className="meatopia"
-            w={["90%", "90%", "70%"]}
+            w={{base:"90%", md:"90%", lg:"70%"}}
             m="auto"
             bg="#ffdc93"
             p="10px"
@@ -116,7 +116,7 @@ const Home = () => {
                 <Image h="50px" src={logo} alt="logo" />
                 <Button
                   p="5px 10px"
-                  fontSize={["14px", "16px", "18px"]}
+                  fontSize={{base:"14px", md:"16px", lg:"18px"}}
                   _hover={{
                     bg: "white",
                     color: "#D11243",
@@ -140,14 +140,14 @@ const Home = () => {
           <Box className="discovernow">
             <Box m="20px auto" textAlign="center">
               <Box
-                w={["57%", "35%", "25%"]}
+                w={{base:"57%", md:"35%", lg:"25%"}}
                 m="auto"
                 bg="#f0eded"
                 position="absolute"
-                mt={["-2%", "-1.5%", "-1%"]}
-                left={["22%", "32%", "38%"]}
+                mt={{base:"-2%", md:"-1.5%", lg:"-1%"}}
+                left={{base:"22%", md:"32%", lg:"38%"}}
                 fontWeight="bold"
-                fontSize={["15px", "16px", "19px"]}
+                fontSize={{base:"15px", md:"16px", lg:"19px"}}
               >
                 <Text color="#D11243">Know The Licious Way</Text>
               </Box>
@@ -158,58 +158,54 @@ const Home = () => {
                 rounded="10px"
                 p="30px"
                 display="grid"
-                fontSize={["14px", "15px", "17px"]}
-                gridTemplateColumns={[
-                  "repeat(1, 1fr)",
-                  "repeat(3, 1fr)",
-                  "repeat(5, 1fr)",
-                ]}
+                fontSize={{base:"14px", md:"15px", lg:"17px"}}
+                gridTemplateColumns={{base: "repeat(1, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(5, 1fr)"}}
               >
                 <Box
-                  borderRight={[
-                    "none",
-                    "1px solid #cdcbcb",
-                    "1px solid #cdcbcb",
-                  ]}
-                  borderBottom={[
-                    "1px solid #cdcbcb",
-                    "1px solid #cdcbcb",
-                    "none",
-                  ]}
+                  borderRight={{
+                    base:"none",
+                    md:"1px solid #cdcbcb",
+                    lg:"1px solid #cdcbcb",
+                  }}
+                  borderBottom={{
+                    base:"1px solid #cdcbcb",
+                    md:"1px solid #cdcbcb",
+                    lg:"none",
+                  }}
                 >
                   <Text>Premium Produce</Text>
                 </Box>
                 <Box
-                  borderRight={[
-                    "none",
-                    "1px solid #cdcbcb",
-                    "1px solid #cdcbcb",
-                  ]}
-                  borderBottom={[
-                    "1px solid #cdcbcb",
-                    "1px solid #cdcbcb",
-                    "none",
-                  ]}
+                  borderRight={{
+                    base:"none",
+                    md:"1px solid #cdcbcb",
+                    lg:"1px solid #cdcbcb"
+                  }}
+                  borderBottom={{
+                    base:"1px solid #cdcbcb",
+                    md:"1px solid #cdcbcb",
+                    lg:"none"
+                  }}
                 >
                   <Text>Extraordinary Cooking</Text>
                 </Box>
                 <Box
-                  borderRight={["none", "none", "1px solid #cdcbcb"]}
-                  borderBottom={[
-                    "1px solid #cdcbcb",
-                    "1px solid #cdcbcb",
-                    "none",
-                  ]}
+                  borderRight={{base:"none", md:"none", lg:"1px solid #cdcbcb"}}
+                  borderBottom={{
+                    base:"1px solid #cdcbcb",
+                    md:"1px solid #cdcbcb",
+                    lg:"none",
+                  }}
                 >
                   <Text>150 Quality Checks</Text>
                 </Box>
                 <Box
-                  borderRight={[
-                    "none",
-                    "1px solid #cdcbcb",
-                    "1px solid #cdcbcb",
-                  ]}
-                  borderBottom={["1px solid #cdcbcb", "none", "none"]}
+                  borderRight={{
+                    base:"none",
+                    md:"1px solid #cdcbcb",
+                    lg:"1px solid #cdcbcb",
+                  }}
+                  borderBottom={{base:"1px solid #cdcbcb", md:"none", lg:"none"}}
                 >
                   <Text>Delivered Fresh Everyday</Text>
                 </Box>
@@ -217,10 +213,10 @@ const Home = () => {
                   <Text>World-Class Central Production Unit</Text>
                 </Box>
               </Box>
-              <Box mt={["-6%", "-4%", "-2%"]}>
+              <Box mt={{base:"-6%", md:"-4%", lg:"-2%"}}>
                 <Button
                   p="5px 10px"
-                  fontSize={["14px", "16px", "18px"]}
+                  fontSize={{base:"14px", md:"16px",lg:"18px"}}
                   _hover={{ bg: "#D11243", color: "white" }}
                   border="2px solid #D11243"
                   color="#D11243"
@@ -238,18 +234,14 @@ const Home = () => {
         <Box>
           <Box w="87%" m="auto" p="20px 0px">
             <Box w="95%" m="auto" textAlign="left" mb="10px" color="#4d4d4d">
-              <Text fontSize={["17px", "20px", "23px"]} fontWeight="bold">
+              <Text fontSize={{base: "17px", md: "20px", lg:"23px"}} fontWeight="bold">
                 Explore by categories
               </Text>
             </Box>
             <Box>
               <Box
                 display="grid"
-                gridTemplateColumns={[
-                  "repeat(2, 1fr)",
-                  "repeat(3, 1fr)",
-                  "repeat(4, 1fr)",
-                ]}
+                gridTemplateColumns={{base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)"}}
               >
                 {categories &&
                   categories.map((el) => {
@@ -264,12 +256,14 @@ const Home = () => {
                             boxSize="100%"
                             src={el.img}
                             alt={el.name}
+                            onClick={()=>navigate(el.link)}
+                            cursor="pointer"
                           />
                         </Box>
                         <Link href={el.link}>
                           <Text
                             fontWeight={"700"}
-                            fontSize={["14px", "16px", "18px"]}
+                            fontSize={{base:"14px", md: "16px", lg:"18px"}}
                             m="5px 0px"
                           >
                             {el.name}
@@ -285,7 +279,7 @@ const Home = () => {
         <Box>
           <Box w="85%" m="auto" p="20px 0px">
             <Box textAlign="left" mb="10px" color="#4d4d4d">
-              <Text fontSize={["18px", "21px", "25px"]} fontWeight="600">
+              <Text fontSize={{base:"18px", md:"21px", lg:"25px"}} fontWeight="600">
                 Check out our blog
               </Text>
             </Box>
@@ -293,11 +287,7 @@ const Home = () => {
               <Box
                 display="grid"
                 gap="20px"
-                gridTemplateColumns={[
-                  "repeat(1, 1fr)",
-                  "repeat(1, 1fr)",
-                  "repeat(3, 1fr)",
-                ]}
+                gridTemplateColumns={{base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)"}}
               >
                 {blogs &&
                   blogs.map((el) => {
@@ -305,13 +295,13 @@ const Home = () => {
                       <Box key={el.id} textAlign="center" color="#404040">
                         <Image
                           rounded="10px"
-                          boxSize={["200px", "300px", "400px"]}
+                          boxSize={{base:"250px", md:"300px", lg:"400px"}}
                           src={el.img}
                           alt={el.name}
                         />
                         <Text
                           fontWeight={"700"}
-                          fontSize={["14px", "16px", "18px"]}
+                          fontSize={{base:"14px", md:"16px", lg:"18px"}}
                           m="5px 0px"
                         >
                           {el.name}
@@ -330,3 +320,4 @@ const Home = () => {
 };
 
 export default Home;
+
